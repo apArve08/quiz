@@ -47,45 +47,45 @@
                 <p>After completing this chapter and quiz, you should be able to:</p>
                 <ul style="margin-bottom: 20px;">
                     <li><strong>Distinguish Maintenance Types:</strong> Differentiate between Corrective (fixing), Adaptive (environment), Perfective (enhancing), and Preventive (future-proofing) tasks.</li>
-                    <li><strong>Understand System Decay:</strong> Explain <em>Software Aging</em> and how <em>Technical Debt</em> and <em>Architectural Erosion</em> make systems harder to maintain over time.</li>
-                    <li><strong>Manage Legacy Systems:</strong> Identify the risks of replacing legacy systems and the role of <em>Reengineering</em> vs <em>Refactoring</em>.</li>
-                    <li><strong>Apply Metrics:</strong> Use <em>MTBF</em> (Reliability), <em>MTTR</em> (Repair speed), and <em>COCOMO</em> (Cost estimation) to quantitatively assess software health.</li>
-                    <li><strong>Navigate Evolution Models:</strong> Compare the <em>Quick Fix</em>, <em>Iterative Enhancement</em>, and <em>Full Reuse</em> models of software evolution.</li>
+                    <li><strong>Understand System Decay:</strong> Explain <em style="font-style: normal;">Software Aging</em> and how <em style="font-style: normal;">Technical Debt</em> and <em style="font-style: normal;">Architectural Erosion</em> make systems harder to maintain over time.</li>
+                    <li><strong>Manage Legacy Systems:</strong> Identify the risks of replacing legacy systems and the role of <em style="font-style: normal;">Reengineering</em> vs <em style="font-style: normal;">Refactoring</em>.</li>
+                    <li><strong>Apply Metrics:</strong> Use <em style="font-style: normal;">MTBF</em> (Reliability), <em style="font-style: normal;">MTTR</em> (Repair speed), and <em style="font-style: normal;">COCOMO</em> (Cost estimation) to quantitatively assess software health.</li>
+                    <li><strong>Navigate Evolution Models:</strong> Compare the <em style="font-style: normal;">Quick Fix</em>, <em style="font-style: normal;">Iterative Enhancement</em>, and <em style="font-style: normal;">Full Reuse</em> models of software evolution.</li>
                 </ul>
                 
                 <h3 style="color: #0056b3; font-size: 1.2em;">📚 Comprehensive Chapter Summaries (Based on Course Notes)</h3>
                 
                 <div style="margin-bottom: 20px; padding: 10px; border-left: 4px solid #d32f2f; background: #fff;">
                     <strong style="color: #d32f2f; font-size: 1.1em;">Chapter 1: Software Maintenance & Evolution</strong><br>
-                    <em>Core Concept: Modifying products post-delivery to meet changing needs.</em>
+                    <em style="font-style: italic;">Core Concept: Modifying products post-delivery to meet changing needs.</em>
                     <ul style="font-size: 0.95em; margin-top: 5px;">
-                        <li><strong>Real-World Impact:</strong> The 2018 Facebook "View As" bug illustrates how a maintenance modification can inadvertently introduce critical vulnerabilities.</li>
-                        <li><strong>Critical Nature:</strong> Maintenance is often harder than development because foreseen changes are rare.</li>
-                        <li><strong>Common Failures:</strong> Issues typically arise from <em style="font-style: normal;">Lack of Traceability</em> (code not linked to requirements), <em style="font-style: normal;">Lack of Code Comments</em>, and <em style="font-style: normal;">Incomplete Requirements</em>.</li>
-                        <li><strong>Software Aging:</strong> Caused by "ignorant surgery," architectural erosion, and deadline pressure, leading to a high probability of system failure over time.</li>
-                        <li><strong>Evolution vs Maintenance:</strong> Maintenance focuses on modifying components without major architecture changes, while Evolution is a broader term encompassing major versions and redesigns.</li>
+                        <li><strong style="font-style: normal;">Real-World Impact:</strong> The 2018 Facebook "View As" bug illustrates how a maintenance modification can inadvertently introduce critical vulnerabilities.</li>
+                        <li><strong style="font-style: normal;">Critical Nature:</strong> Maintenance is often harder than development because foreseen changes are rare.</li>
+                        <li><strong style="font-style: normal;">Common Failures:</strong> Issues typically arise from <em style="font-style: normal;">Lack of Traceability</em> (code not linked to requirements), <em style="font-style: normal;">Lack of Code Comments</em>, and <em style="font-style: normal;">Incomplete Requirements</em>.</li>
+                        <li><strong style="font-style: normal;">Software Aging:</strong> Caused by "ignorant surgery," architectural erosion, and deadline pressure, leading to a high probability of system failure over time.</li>
+                        <li><strong style="font-style: normal;">Evolution vs Maintenance:</strong> Maintenance focuses on modifying components without major architecture changes, while Evolution is a broader term encompassing major versions and redesigns.</li>
                     </ul>
                 </div>
                 
                 <div style="margin-bottom: 20px; padding: 10px; border-left: 4px solid #d32f2f; background: #fff;">
                     <strong style="color: #d32f2f; font-size: 1.1em;">Chapter 2: Key Issues in Software Maintenance</strong><br>
-                    <em>Core Concept: Technical and Management hurdles in long-term support.</em>
+                    <em style="font-style: italic;">Core Concept: Technical and Management hurdles in long-term support.</em>
                     <ul style="font-size: 0.95em; margin-top: 5px;">
-                        <li><strong>Technical Issues:</strong> 
-                            <ul>
+                        <li><strong style="font-style: normal;">Technical Issues:</strong> 
+                            <ul style="font-style: normal;">
                                 <li><em style="font-style: normal;">Limited Understanding:</em> A major hurdle when new developers join; they must undergo "Program Understanding" to avoid introducing new bugs.</li>
                                 <li><em style="font-style: normal;">Testing:</em> Inadequate test plans and difficulties in reproducing bugs are primary risks.</li>
-                                <li><em style="font-style: normal;">Impact Analysis:</strong> The inability to predict the effect of changes, leading to unintended consequences.</li>
+                                <li><em style="font-style: normal;">Impact Analysis:</em> The inability to predict the effect of changes, leading to unintended consequences.</li>
                             </ul>
                         </li>
-                        <li><strong>Management & Costs:</strong>
-                            <ul>
-                                <li><em style="font-style: normal;">Budgeting:</strong> Maintenance cost distribution typically follows the 60% Enhancement / 20% Adaptation / 20% Correction rule.</li>
-                                <li><em style="font-style: normal;">Estimation:</strong> COCOMO (Basic, Intermediate, Advanced) uses LOC to predict effort.</li>
+                        <li><strong style="font-style: normal;">Management & Costs:</strong>
+                            <ul style="font-style: normal;">
+                                <li><em style="font-style: normal;">Budgeting:</em> Maintenance cost distribution typically follows the 60% Enhancement / 20% Adaptation / 20% Correction rule.</li>
+                                <li><em style="font-style: normal;">Estimation:</em> COCOMO (Basic, Intermediate, Advanced) uses LOC to predict effort.</li>
                             </ul>
                         </li>
-                        <li><strong>Quantitative Metrics:</strong>
-                            <ul>
+                        <li><strong style="font-style: normal;">Quantitative Metrics:</strong>
+                            <ul style="font-style: normal;">
                                 <li><em style="font-style: normal;">Reliability:</em> Measured by MTBF (operational hours / number of failures).</li>
                                 <li><em style="font-style: normal;">Efficiency:</em> Measured by MTTR (average repair time).</li>
                                 <li><em style="font-style: normal;">OEE:</em> Combines availability, performance, and quality.</li>
@@ -96,18 +96,29 @@
                 
                 <div style="margin-bottom: 15px; padding: 10px; border-left: 4px solid #d32f2f; background: #fff;">
                     <strong style="color: #d32f2f; font-size: 1.1em;">Chapter 3: Evolution and Maintenance Models</strong><br>
-                    <em>Core Concept: Structured frameworks for managing the software lifecycle.</em>
+                    <em style="font-style: italic;">Core Concept: Structured frameworks for managing the software lifecycle.</em>
                     <ul style="font-size: 0.95em; margin-top: 5px;">
-                        <li><strong>Reuse Oriented Models (Basili):</strong>
-                            <ul>
+                        <li><strong style="font-style: normal;">Reuse Oriented Models (Basili):</strong>
+                            <ul style="font-style: normal;">
                                 <li><em style="font-style: normal;">Quick Fix:</em> Source code is modified first $\rightarrow$ documentation updated second. High risk.</li>
                                 <li><em style="font-style: normal;">Iterative Enhancement:</em> Changes move from highest-level documents down to the code. Structured approach.</li>
                                 <li><em style="font-style: normal;">Full Reuse:</strong> Components of the old system are identified and modified to form a new system.</li>
                             </ul>
                         </li>
-                        <li><strong>Staged Model (Rajlich & Bennett):</strong> Life spans are split into: <em style="font-style: normal;">Initial Development</em> (high change, fresh knowledge) $\rightarrow$ <em style="font-style: normal;">Evolution</em> (stable architecture, most lifespan spent here) $\rightarrow$ <em style="font-style: normal;">Servicing</em> (minimal changes, knowledge loss) $\rightarrow$ <em style="font-style: normal;">Termination</em>.</li>
-                        <li><strong>Legacy Management:</strong> Strategies include scrapping, continued maintenance, transforming through reengineering, or total replacement (which is risky due to undocumented business rules).</li>
-                        <li><strong>Refactoring vs Reengineering:</strong> Refactoring is a continuous preventivve process to stop degradation. Reengineering is a drastic restructuring of a legacy system to improve maintainability without changing functionality.</li>
+                        <li><strong style="font-style: normal;">Staged Model (Rajlich & Bennett):</strong> Life spans are split into: <em style="font-style: normal;">Initial Development</em> (high change, fresh knowledge) $\rightarrow$ <em style="font-style: normal;">Evolution</em> (stable architecture, most lifespan spent here) $\rightarrow$ <em style="font-style: normal;">Servicing</em> (minimal changes, knowledge loss) $\rightarrow$ <em style="font-style: normal;">Termination</em>.</li>
+                        <li><strong style="font-style: normal;">Legacy Management:</strong> Strategies include scrapping, continued maintenance, transforming through reengineering, or total replacement (which is risky due to undocumented business rules).</li>
+                        <li><strong style="font-style: normal;">Refactoring vs Reengineering:</strong> Refactoring is a continuous preventivve process to stop degradation. Reengineering is a drastic restructuring of a legacy system to improve maintainability without changing functionality.</li>
+                    </ul>
+                </div>
+
+                <h3 style="color: #0056b3; font-size: 1.2em; margin-top: 30px;">🚀 Deeper Insights (Extended Knowledge)</h3>
+                <div style="background: #eff6ff; padding: 15px; border-radius: 8px; font-size: 0.95em; border: 1px solid #bfdbfe;">
+                    <p>To truly master this material, consider these advanced perspectives integrated from global standards (ISO/IEC 14764):</p>
+                    <ul style="font-style: normal;">
+                        <li><strong style="font-style: normal;">The "Maintenance Iceberg":</strong> Maintenance is more than just fixing bugs; it is an extension of development. The "visible" part is the bug fix, but the "underwater" part is the massive effort in program understanding and regression testing.</li>
+                        <li><strong style="font-style: normal;">SMLC vs SDLC:</strong> While SDLC ends at deployment, the <strong>Software Maintenance Life Cycle (SMLC)</strong> is a repeating loop of: <em style="font-style: normal;">Request $\rightarrow$ Analysis $\rightarrow$ Modification $\rightarrow$ Re-validation</em>.</li>
+                        <li><strong style="font-style: normal;">The Risk of Replacement:</strong> Replacing a legacy system is often more dangerous than maintaining a bad one because business rules are often "embedded" in the code rather than documented. If you replace the code, you might lose the business logic.</li>
+                        <li><strong style="font-style: normal;">The Psychology of Maintenance:</strong> There is often a "skill gap" or lack of incentive for developers to write maintainable code if they know a separate maintenance team will be the ones dealing with the a-years-later headaches.</li>
                     </ul>
                 </div>
             </div>
@@ -115,6 +126,7 @@
 
         <div class="section">
             <h2>📌 Quick Summary: Maintenance Types</h2>
+
             <table>
                 <thead>
                     <tr>
