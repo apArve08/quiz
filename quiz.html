@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Maintenance Quiz</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 20px auto; padding: 20px; background-color: #f4f4f9; }
+        .quiz-container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .question { margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background: #fff; }
+        .question-text { font-weight: bold; margin-bottom: 15px; display: block; font-size: 1.1em; }
+        .options { list-style: none; padding: 0; }
+        .option { margin-bottom: 10px; cursor: pointer; padding: 12px; border-radius: 4px; transition: all 0.2s; border: 1px solid #ccc; background: #fafafa; }
+        .option:hover { background: #eef; }
+        .correct { background-color: #c8e6c9 !important; border-color: #4caf50 !important; color: #2e7d32; font-weight: bold; }
+        .wrong { background-color: #ffcdd2 !important; border-color: #f44336 !important; color: #c62828; }
+        .difficulty { font-size: 0.8em; color: #666; text-transform: uppercase; margin-bottom: 5px; display: inline-block; background: #eee; padding: 2px 6px; border-radius: 3px; }
+        .explanation { margin-top: 15px; padding: 15px; background-color: #e3f2fd; border-left: 5px solid #2196f3; display: none; font-size: 0.95em; }
+        .explanation-title { font-weight: bold; color: #1565c0; display: block; margin-bottom: 5px; }
+        #result-summary { margin-top: 20px; font-weight: bold; font-size: 1.2em; text-align: center; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1 style="text-align:center">Software Maintenance & Evolution Quiz</h1>
+        <p style="text-align:center; color: #666;">Select an answer to see the result immediately.</p>
+        <div id="quiz"></div>
+        <div id="result-summary">Score: 0 / 40</div>
+    </div>
+
+    <script>
+        const questions = [
+            // EASY
+            { q: "What is software maintenance?", options: ["Modifying software after delivery to correct faults or improve performance", "Creating a software system from scratch", "Installing software on a new computer", "Writing the initial design documents"], correct: 0, diff: "Easy", exp: "Correct: Software maintenance focuses on updating systems post-delivery to fix bugs, improve attributes, or adapt to new environments. Incorrect: Scratch development and installation are not 'maintenance' of existing software." },
+            { q: "Which type of maintenance is performed to fix discovered bugs?", options: ["Adaptive", "Corrective", "Perfective", "Preventive"], correct: 1, diff: "Easy", exp: "Correct: Corrective maintenance is reactive and specifically targets fixing faults (bugs). Adaptive is for environments, Perfective for quality, and Preventive to avoid future issues." },
+            { q: "What describes modifications to keep software usable in a changing environment?", options: ["Corrective maintenance", "Preventive maintenance", "Adaptive maintenance", "Perfective maintenance"], correct: 2, diff: "Easy", exp: "Correct: Adaptive maintenance ensures software stays operational when external influences (like OS updates or law changes like GST to SST) occur." },
+            { q: "Which maintenance type focuses on improving performance or maintainability without adding new functions?", options: ["Adaptive", "Corrective", "Perfective", "Preventive"], correct: 2, diff: "Easy", exp: "Correct: Perfective maintenance improves quality, responsiveness, or maintainability based on user requests for minor tweaks." },
+            { q: "Preventive maintenance is used to:", options: ["Fix already existing bugs", "Adapt to a new OS", "Avoid future problems proactively", "Add new features requested by users"], correct: 2, diff: "Easy", exp: "Correct: Preventive maintenance involves activities like code reviews and automated testing to stop bugs from manifesting in the first place." },
+            { q: "What is the general relationship between maintenance costs and development costs?", options: ["Maintenance is always cheaper", "Maintenance is usually greater than development costs", "They are exactly equal", "Maintenance costs are negligible"], correct: 1, diff: "Easy", exp: "Correct: Maintenance can be 2 to 100 times more expensive than initial development due to system decay and complex integration." },
+            { q: "What is a 'Legacy System'?", options: ["A system developed last week", "A system using obsolete languages and technology", "A system that requires no maintenance", "A state-of-the-art cloud application"], correct: 1, diff: "Easy", exp: "Correct: Legacy systems rely on outdated technology/hardware (like mainframes) but are often critical to business operations." },
+            { q: "Which of the following is a common cause of maintenance issues?", options: ["Too many code comments", "Lack of traceability", "Excessive testing", "Clear requirements"], correct: 1, diff: "Easy", exp: "Correct: Lack of traceability makes it hard to link code back to requirements, hindering bug detection and correction." },
+            { q: "What is Refactoring?", options: ["Replacing the entire system", "Rewriting the system in a new language", "Improving internal structure without changing external behavior", "Adding new features to the system"], correct: 2, diff: "Easy", exp: "Correct: Refactoring cleans up 'sloppy' code to reduce complexity and degradation without changing how the software functions." },
+            { q: "Which tool is used to estimate software effort based on lines of code?", options: ["MTTR", "COCOMO", "OEE", "SST"], correct: 1, diff: "Easy", exp: "Correct: COCOMO (Constructive Cost Model) uses LOC (Lines of Code) to estimate effort. MTTR/OEE are performance metrics." },
+            { q: "Software evolution is a _____ term than software maintenance.", options: ["Narrower", "Broader", "Equivalent", "Opposite"], correct: 1, diff: "Easy", exp: "Correct: Evolution encompasses both routine maintenance and larger architectural changes/versioning." },
+            { q: "What is the purpose of an 'Impact Analysis'?", options: ["To calculate the cost of developers", "To predict the effect of changes on the system", "To write new requirements", "To replace legacy hardware"], correct: 1, diff: "Easy", exp: "Correct: Impact analysis identifies potential ripple effects of a change before it is implemented." },
+            { q: "Which metric measures the average time between breakdowns?", options: ["MTTR", "MTBF", "OEE", "Velocity"], correct: 1, diff: "Easy", exp: "Correct: MTBF (Mean Time Between Failure) tracks reliability based on operational hours vs number of failures." },
+            { q: "Which metric measures the average time taken to repair a failed component?", options: ["MTBF", "MTTR", "Code Churn", "Velocity"], correct: 1, diff: "Easy", exp: "Correct: MTTR (Mean Time To Repair) evaluates the effectiveness and speed of the maintenance team." },
+            { q: "In a typical maintenance activity distribution, what percentage is usually for 'Enhancement'?", options: ["20%", "40%", "60%", "100%"], correct: 2, diff: "Easy", exp: "Correct: The widely used rule of thumb is 60% Enhancement, 20% Adaptation, and 20% Corrections." },
+
+            // MEDIUM
+            { q: "According to the provided slides, why is a 'Quick Fix Model' often risky?", options: ["It is too expensive", "It requires too much documentation", "Changes are often made without prior impact analysis or regression testing", "It takes too long to implement"], correct: 2, diff: "Medium", exp: "Correct: Quick Fix changes code immediately and documents it after, often ignoring the impact on other modules." },
+            { q: "What is 'Code Churn'?", options: ["The speed of the CPU during maintenance", "The number of lines modified, added, or deleted in a period", "The process of rotating staff in a project", "The time it takes to compile the code"], correct: 1, diff: "Medium", exp: "Correct: High code churn often indicates instability or a need for attention in a specific software area." },
+            { q: "How does the 'Iterative Enhancement Model' differ from the 'Quick Fix Model'?", options: ["It skips documentation", "It starts changes at the highest-level documents and propagates them down", "It only modifies source code", "It requires a full system replacement"], correct: 1, diff: "Medium", exp: "Correct: Iterative Enhancement is structured: Requirements -> Design -> Code. Quick Fix is Code -> Requirements." },
+            { q: "Which of these is NOT an element of a legacy system according to the text?", options: ["Obsolete hardware", "Inconsistent data", "Modern CI/CD pipelines", "Business processes"], correct: 2, diff: "Medium", exp: "Correct: Legacy systems are characterized by obsolete tech, not modern automation like CI/CD pipelines." },
+            { q: "What is 'Technical Debt' in the context of software maintenance?", options: ["Money borrowed to buy new servers", "The cost of short-term solutions that must be 'paid' by updating later", "The salary owed to maintenance programmers", "The cost of software licenses"], correct: 1, diff: "Medium", exp: "Correct: Choosing 'easy' but sub-optimal code now creates a debt of extra work required to fix it later." },
+            { q: "What is the 'Full Reuse Model'?", options: ["Building a new system using no old components", "Building a new system primarily from components of an old system", "Only using the documentation of the old system", "Replacing the old system with COTS software"], correct: 1, diff: "Medium", exp: "Correct: This model identifies and modifies existing components to fit new requirements, integrating them into a new version." },
+            { q: "Which of the following is a labor cost component of maintenance?", options: ["Server hardware", "Software licenses", "Personnel salaries for developers and technicians", "Cloud storage fees"], correct: 2, diff: "Medium", exp: "Correct: Labor costs are strictly the human resource expenses (salaries, skills, and experience)." },
+            { q: "What does the 'SMLC' stand for?", options: ["Software Maintenance Life Cycle", "Software Management Logic Circuit", "System Maintenance Level Control", "Software Modification Life Cycle"], correct: 0, diff: "Medium", exp: "Correct: SMLC is the unique lifecycle for maintenance, distinct from the initial development SDLC." },
+            { q: "What is 'Software Aging'?", options: ["The software getting faster over time", "The tendency for software to fail after running continuously for a period", "Updating software to the latest version", "The process of retiring a senior developer"], correct: 1, diff: "Medium", exp: "Correct: Aging occurs due to architectural erosion, deadline pressure, and inconsistent documentation over time." },
+            { q: "In the 'Staged Model' of evolution, what happens during the 'Servicing' stage?", options: ["Knowledge is at its peak", "The system is a key asset and undergoes major changes", "Focus is on maintenance tasks rather than architectural change", "The first delivered version is produced"], correct: 2, diff: "Medium", exp: "Correct: In the Servicing stage, the system is no longer a key asset, and developers only do basic repairs." },
+            { q: "Which of these is an Algorithmic Cost Model mentioned in the text?", options: ["MTBF", "SLIM", "SST", "OEE"], correct: 1, diff: "Medium", exp: "Correct: SLIM (Software Life Cycle Management) is an algorithmic model. MTBF/OEE are metrics, not cost models." },
+            { q: "What is the primary objective of the 'Staged Model' (Rajlich and Bennett)?", options: ["To manage costs", "To improve understanding of how long-lived software evolves", "To automate testing", "To replace legacy systems"], correct: 1, diff: "Medium", exp: "Correct: It is a descriptive model intended to help people understand the evolution process, not manage it." },
+            { q: "Why is 'Program Understanding' the first stage of change implementation?", options: ["Because it is the fastest part", "Especially important if original developers are not doing the change", "To avoid the need for testing", "Because it replaces the need for documentation"], correct: 1, diff: "Medium", exp: "Correct: New maintainers must learn how the program is structured before they can safely modify it." },
+            { q: "Which of the following is a management issue in software maintenance?", options: ["Lack of code comments", "Insufficient budget allocation", "Difficulty in reproducing bugs", "Code complexity"], correct: 1, diff: "Medium", exp: "Correct: Budgeting and planning are organizational/management issues. Comments and complexity are technical issues." },
+            { q: "What is 'Overall Equipment Effectiveness' (OEE)?", options: ["A measure of developer productivity", "A comprehensive metric measuring availability, performance, and quality", "The total cost of ownership", "The speed of the network"], correct: 1, diff: "Medium", exp: "Correct: OEE provides a holistic view of efficiency by combining three key factors: Availability, Performance, and Quality." },
+
+            // HARD
+            { q: "Contrast Reengineering and Refactoring based on the text.", options: ["Reengineering is continuous; Refactoring happens after years of maintenance", "Reengineering is a continuous process; Refactoring is a one-time event", "Reengineering involves automated tools for legacy systems; Refactoring is a continuous improvement to avoid degradation", "There is no difference between them"], correct: 2, diff: "Hard", exp: "Correct: Refactoring is an ongoing 'preventive' process during development. Reengineering is a more drastic overhaul performed once costs have become too high." },
+            { q: "Which scenario justifies 'Urgent Change Requests' skipping standard SE processes?", options: ["A minor UI color change", "A serious system fault affecting normal operation", "Adding a new feature for a specific client", "Updating internal documentation"], correct: 1, diff: "Hard", exp: "Correct: Serious faults, critical OS upgrade failures, or extreme business competition justify bypassing standard cycles for speed." },
+            { q: "How do Agile methods affect the transition from development to evolution?", options: ["They make it more difficult because of iterations", "The transition is seamless as evolution is a continuation of incremental development", "They eliminate the need for maintenance", "They require a separate SMLC model"], correct: 1, diff: "Hard", exp: "Correct: Agile's focus on frequent releases means the boundary between 'development' and 'evolution' is practically invisible." },
+            { q: "In the context of legacy systems, why is replacement considered risky?", options: ["Because the new hardware is too expensive", "Due to lack of complete system specifications and undocumented business rules", "Because the developers are too skilled", "Because modern languages are too slow"], correct: 1, diff: "Hard", exp: "Correct: Legacy systems often contain 'hidden' business rules that aren't in the docs, making new versions likely to miss critical functionality." },
+            { q: "How does 'Architectural Erosion' contribute to software aging?", options: ["By adding too many features", "Through 'ignorant surgery' and maintenance activities that corrupt structure", "By updating the OS too frequently", "By having too much documentation"], correct: 1, diff: "Hard", exp: "Correct: Architectural erosion happens when quick fixes 'surgery' the code, breaking the original design patterns." },
+            { q: "Which of these is a 'Project Metric' rather than a 'Product' or 'Process' metric?", options: ["Lines of Code", "Mean Time to Repair", "Velocity Chart (amount of work completed in a sprint)", "Cyclomatic Complexity"], correct: 2, diff: "Hard", exp: "Correct: Velocity tracks the team's output per sprint (project management), while LOC/Complexity track the product." },
+            { q: "Analyze the 'Reuse Oriented Model'. What is the prerequisite for the 'Iterative Enhancement Model'?", options: ["A high budget", "Availability of a repository of artifacts from earlier versions", "A an experienced team", "The use of the Quick Fix Model"], correct: 1, diff: "Hard", exp: "Correct: This model relies on 'artifacts' (requirements, design docs) being available to propagate changes downward." },
+            { q: "What is the relationship between 'Technical Debt' and 'Entropy' as mentioned in the text?", options: ["Debt reduces entropy", "Entropy is the cost of paying the debt", "Unpaid technical debt accumulates 'interest' due to increased entropy", "There is no relationship"], correct: 2, diff: "Hard", exp: "Correct: Entropy (disorder) increases as short-term hacks accumulate, making later changes exponentially harder (the 'interest')." },
+            { q: "Reengineering process includes which sequence of activities?", options: ["Only source code translation", "Reverse engineering -> Program structure improvement -> Modularization -> Data reengineering", "Writing new requirements -> Coding -> Testing", "Replacing hardware -> Installing OS -> Running software"], correct: 1, diff: "Hard", exp: "Correct: The process involves analyzing first (reverse eng), restructuring for understanding, modularizing, and finally cleaning data." },
+            { q: "Compare the 'Basic' and 'Advanced' versions of COCOMO.", options: ["Basic is more accurate than Advanced", "Advanced provides a higher level of detail and accuracy than Basic", "Basic is used for legacy systems, Advanced for new ones", "There is no difference in accuracy"], correct: 1, diff: "Hard", exp: "Correct: Advanced COCOMO accounts for more variables, yielding a more precise cost estimate." },
+            { q: "Which factor most significantly increases the cost of adding a feature during maintenance vs development?", options: ["The cost of the compiler", "The need for a new team to understand the existing programs", "The size of the monitor", "The number of users"], correct: 1, diff: "Hard", exp: "Correct: Because the maintenance team must spend significant time in 'Program Understanding' before coding." },
+            { q: "What is the goal of a 'Change Request Workflow' in SCM?", options: ["To avoid making changes", "To identify, describe, track, and document all requested changes", "To replace the project manager", "To automate the entire coding process"], correct: 1, diff: "Hard", exp: "Correct: SCM ensures that no change happens blindly; every request is logged, analyzed for impact, and tracked." },
+            { q: "In the context of the 'SMLC', why can maintenance select a subset of test cases for regression testing?", options: ["Because the system is smaller", "Because test data from development is already available", "Because it's faster to write new tests", "Because regression testing is not required"], correct: 1, diff: "Hard", exp: "Correct: Maintenance inherits a set of test cases from the original development, which can be reused as a baseline." },
+            { q: "What characterizes the 'Initial Development' stage in the Staged Model?", options: ["Architecture is stabilized immediately", "Knowledge is fresh and change is the rule rather than the exception", "The system is no longer a key asset", "Maintenance costs are at their lowest"], correct: 1, diff: "Hard", exp: "Correct: In this stage, the team knows the system best, and the architecture is still evolving rapidly." },
+            { q: "How does the 'Full Reuse Model' handle old system components?", options: ["It deletes them all", "It identifies candidates for reuse, understands them, and modifies them to support new requirements", "It only uses the source code, ignoring the data", "It copies them exactly without any modification"], correct: 1, diff: "Hard", exp: "Correct: It is an explicit reuse process: Identification -> Understanding -> Modification -> Integration." }
+        ];
+
+        const quizContainer = document.getElementById('quiz');
+        const resultSummary = document.getElementById('result-summary');
+        let currentScore = 0;
+
+        function loadQuiz() {
+            questions.forEach((q, index) => {
+                const qDiv = document.createElement('div');
+                qDiv.className = 'question';
+                qDiv.innerHTML = `
+                    <span class="difficulty">${q.diff}</span>
+                    <span class="question-text">${index + 1}. ${q.q}</span>
+                    <ul class="options" id="q${index}">
+                        ${q.options.map((opt, i) => `<li class="option" onclick="handleSelect(${index}, ${i})">${opt}</li>`).join('')}
+                    </ul>
+                    <div class="explanation" id="exp${index}">
+                        <span class="explanation-title">Explanation:</span>
+                        ${q.exp}
+                    </div>
+                `;
+                quizContainer.appendChild(qDiv);
+            });
+        }
+
+        window.handleSelect = (qIndex, oIndex) => {
+            const options = document.querySelectorAll(`#q${qIndex} .option`);
+            const explanationDiv = document.getElementById(`exp${qIndex}`);
+            
+            // Prevent re-selection
+            if (options[0].classList.contains('correct') || options[0].classList.contains('wrong')) return;
+
+            const correctIdx = questions[qIndex].correct;
+            
+            // Mark Correct/Wrong
+            options[correctIdx].classList.add('correct');
+            if (oIndex !== correctIdx) {
+                options[oIndex].classList.add('wrong');
+            } else {
+                currentScore++;
+            }
+
+            // Show explanation
+            explanationDiv.style.display = 'block';
+            
+            // Update Score
+            resultSummary.innerText = `Score: ${currentScore} / ${questions.length}`;
+        };
+
+        loadQuiz();
+    </script>
+</body>
+</html>
