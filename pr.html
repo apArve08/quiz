@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Self-Learn Roadmap</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --border: #1e1e2e;
+    --accent1: #7c6af7;
+    --accent2: #f76a6a;
+    --accent3: #6af7c4;
+    --accent4: #f7c46a;
+    --accent-agent: #ff007f;
+    --accent5: #f76ae2;
+    --accent6: #6adbf7;
+    --accent7: #b3f76a;
+    --text: #e8e8f0;
+    --muted: #6b6b80;
+    --card: #13131d;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* GRID BG */
+  body::before {
+    content:'';
+    position:fixed;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(124,106,247,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(124,106,247,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  .wrapper { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:48px 24px 80px; }
+
+  /* HEADER */
+  .header { margin-bottom: 56px; }
+  .header .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent1);
+    margin-bottom: 12px;
+  }
+  .header h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text);
+  }
+  .header h1 span { color: var(--accent1); }
+  .header p {
+    margin-top: 16px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  /* TIMELINE OVERVIEW */
+  .timeline-bar {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 2px;
+    margin-bottom: 56px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  @media(max-width: 950px) {
+    .timeline-bar { grid-template-columns: repeat(4, 1fr); gap: 4px; }
+  }
+  @media(max-width: 480px) {
+    .timeline-bar { grid-template-columns: repeat(2, 1fr); }
+  }
+  .tl-seg {
+    padding: 14px 12px;
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    position: relative;
+  }
+  .tl-seg:hover { opacity: 0.85; }
+  .tl-seg .num { font-size: 20px; font-weight: 800; display:block; margin-bottom: 4px; }
+  .tl-seg .weeks { font-size: 9px; opacity: 0.7; white-space: nowrap; }
+  .tl-seg-1 { background: #1a1535; border-top: 3px solid var(--accent1); color: var(--accent1); }
+  .tl-seg-2 { background: #1a1215; border-top: 3px solid var(--accent2); color: var(--accent2); }
+  .tl-seg-3 { background: #0f1a16; border-top: 3px solid var(--accent3); color: var(--accent3); }
+  .tl-seg-4 { background: #1a1710; border-top: 3px solid var(--accent4); color: var(--accent4); }
+  .tl-seg-agent { background: #2b0c1b; border-top: 3px solid var(--accent-agent); color: var(--accent-agent); }
+  .tl-seg-5 { background: #241221; border-top: 3px solid var(--accent5); color: var(--accent5); }
+  .tl-seg-6 { background: #0f1d24; border-top: 3px solid var(--accent6); color: var(--accent6); }
+  .tl-seg-7 { background: #162410; border-top: 3px solid var(--accent7); color: var(--accent7); }
+
+  /* PROJECT CARDS */
+  .projects { display: flex; flex-direction: column; gap: 40px; }
+
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .project-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 28px 28px 24px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .project-header:hover { background: rgba(255,255,255,0.02); }
+
+  .proj-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 4px;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    margin-top: 3px;
+  }
+  .p1 .proj-num { background: rgba(124,106,247,0.15); color: var(--accent1); border: 1px solid rgba(124,106,247,0.3); }
+  .p2 .proj-num { background: rgba(247,106,106,0.15); color: var(--accent2); border: 1px solid rgba(247,106,106,0.3); }
+  .p3 .proj-num { background: rgba(106,247,196,0.15); color: var(--accent3); border: 1px solid rgba(106,247,196,0.3); }
+  .p4 .proj-num { background: rgba(247,196,106,0.15); color: var(--accent4); border: 1px solid rgba(247,196,106,0.3); }
+  .p-agent .proj-num { background: rgba(255,0,127,0.15); color: var(--accent-agent); border: 1px solid rgba(255,0,127,0.3); }
+  .p5 .proj-num { background: rgba(247,106,226,0.15); color: var(--accent5); border: 1px solid rgba(247,106,226,0.3); }
+  .p6 .proj-num { background: rgba(106,219,247,0.15); color: var(--accent6); border: 1px solid rgba(106,219,247,0.3); }
+  .p7 .proj-num { background: rgba(179,247,106,0.15); color: var(--accent7); border: 1px solid rgba(179,247,106,0.3); }
+
+  .proj-title-block { flex:1; }
+  .proj-title-block h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .proj-title-block .tagline {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .proj-meta {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  .meta-pill {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .chevron {
+    font-size: 14px;
+    color: var(--muted);
+    transition: transform 0.3s;
+    margin-left: 8px;
+  }
+  .open .chevron { transform: rotate(180deg); }
+
+  .project-body { display:none; padding: 28px; }
+  .project-body.active { display:block; }
+
+  /* SECTIONS INSIDE CARD */
+  .section-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+  @media(max-width:640px){ .section-grid { grid-template-columns:1fr; } }
+
+  .info-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px;
+  }
+  .info-box h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .p1 .info-box h4 { color: var(--accent1); }
+  .p2 .info-box h4 { color: var(--accent2); }
+  .p3 .info-box h4 { color: var(--accent3); }
+  .p4 .info-box h4 { color: var(--accent4); }
+  .p-agent .info-box h4 { color: var(--accent-agent); }
+  .p5 .info-box h4 { color: var(--accent5); }
+  .p6 .info-box h4 { color: var(--accent6); }
+  .p7 .info-box h4 { color: var(--accent7); }
+
+  .info-box ul { list-style: none; }
+  .info-box ul li {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .info-box ul li:last-child { border-bottom: none; }
+  .info-box ul li::before { content:'›'; color: var(--text); opacity:0.4; flex-shrink:0; }
+
+  /* WEEK BREAKDOWN */
+  .weeks-section { margin-bottom: 24px; }
+  .weeks-section h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .week-list { display: flex; flex-direction: column; gap: 8px; }
+  .week-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface);
+    border-radius: 6px;
+    border-left: 3px solid transparent;
+  }
+  .p1 .week-item { border-left-color: rgba(124,106,247,0.4); }
+  .p2 .week-item { border-left-color: rgba(247,106,106,0.4); }
+  .p3 .week-item { border-left-color: rgba(106,247,196,0.4); }
+  .p4 .week-item { border-left-color: rgba(247,196,106,0.4); }
+  .p-agent .week-item { border-left-color: rgba(255,0,127,0.4); }
+  .p5 .week-item { border-left-color: rgba(247,106,226,0.4); }
+  .p6 .week-item { border-left-color: rgba(106,219,247,0.4); }
+  .p7 .week-item { border-left-color: rgba(179,247,106,0.4); }
+
+  .week-num {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    margin-top: 1px;
+    opacity: 0.5;
+  }
+  .week-content { flex:1; }
+  .week-content strong {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 3px;
+    font-family: 'Syne', sans-serif;
+  }
+  .week-content p { font-size: 11px; color: var(--muted); line-height: 1.6; }
+
+  /* ALERT BOXES */
+  .alert-box {
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 12px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 10px;
+  }
+  .alert-warn { background: rgba(247,196,106,0.07); border: 1px solid rgba(247,196,106,0.2); color: #c4a84a; }
+  .alert-tip  { background: rgba(106,247,196,0.07); border: 1px solid rgba(106,247,196,0.2); color: #4ac49b; }
+  .alert-icon { font-size: 14px; flex-shrink:0; margin-top:1px; }
+
+  /* STACK */
+  .stack-chips { display:flex; flex-wrap:wrap; gap:6px; }
+  .chip {
+    font-size: 10px;
+    padding: 3px 9px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.05);
+    color: var(--muted);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* DIVIDER */
+  .divider { border:none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+  /* FOOTER SUMMARY */
+  .footer-summary {
+    margin-top: 56px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+  }
+  .footer-summary h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+  .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media(max-width:640px){ .summary-grid { grid-template-columns:1fr; } }
+  .sum-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .sum-box .sum-label { font-size: 10px; letter-spacing:2px; text-transform:uppercase; color: var(--muted); margin-bottom:8px; }
+  .sum-box .sum-val { font-family:'Syne',sans-serif; font-size:20px; font-weight:800; color:var(--text); }
+  .sum-box .sum-desc { font-size:11px; color:var(--muted); margin-top:4px; line-height:1.5; }
+
+  /* PREP CHECKLIST */
+  .checklist { list-style:none; }
+  .checklist li {
+    display:flex; gap:10px; align-items:flex-start;
+    font-size:12px; color:var(--muted); line-height:1.6;
+    padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.04);
+  }
+  .checklist li:last-child { border-bottom:none; }
+  .check-box {
+    width:14px; height:14px; border:1px solid var(--border);
+    border-radius:3px; flex-shrink:0; margin-top:2px;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; transition: all 0.15s;
+  }
+  .check-box:hover { border-color: var(--accent1); }
+  .check-box.done { background:var(--accent1); border-color:var(--accent1); }
+  .check-box.done::after { content:'✓'; font-size:9px; color:white; }
+  .checklist li.done-item span { text-decoration: line-through; opacity:0.4; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="eyebrow">// self-learn roadmap · 2025–2026</div>
+    <h1>8 Projects.<br/><span>Full Systems Engineering</span> Unlocked.</h1>
+    <p>A structured 25-week master plan bridging robust event-driven backend systems, rich visual multi-agent workspaces, and granular neural layer mechanics.</p>
+  </div>
+
+  <!-- TIMELINE BAR -->
+  <div class="timeline-bar">
+    <div class="tl-seg tl-seg-1">
+      <span class="num">P1</span>
+      Local AI/RAG
+      <div class="weeks">Weeks 1–4</div>
+    </div>
+    <div class="tl-seg tl-seg-2">
+      <span class="num">P2</span>
+      Caching
+      <div class="weeks">Weeks 5–8</div>
+    </div>
+    <div class="tl-seg tl-seg-3">
+      <span class="num">P3</span>
+      Concurrency
+      <div class="weeks">Weeks 9–12</div>
+    </div>
+    <div class="tl-seg tl-seg-4">
+      <span class="num">P4</span>
+      Terminal
+      <div class="weeks">W1–12 Parallel</div>
+    </div>
+    <div class="tl-seg tl-seg-agent">
+      <span class="num">P5</span>
+      Agent UI
+      <div class="weeks">Weeks 13–15</div>
+    </div>
+    <div class="tl-seg tl-seg-5">
+      <span class="num">P6</span>
+      Transformer
+      <div class="weeks">Weeks 16–18</div>
+    </div>
+    <div class="tl-seg tl-seg-6">
+      <span class="num">P7</span>
+      Index Engine
+      <div class="weeks">Weeks 19–21</div>
+    </div>
+    <div class="tl-seg tl-seg-7">
+      <span class="num">P8</span>
+      Quantization
+      <div class="weeks">Weeks 22–25</div>
+    </div>
+  </div>
+
+  <!-- PREPARATION BOX -->
+  <div class="info-box p1" style="margin-bottom:40px;">
+    <h4 style="color:var(--accent1)">// Before You Start — Preparation Checklist</h4>
+    <ul class="checklist" id="checklist">
+      <li>
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <span>Install <strong style="color:var(--text)">Docker Desktop</strong> — run PostgreSQL, Redis, and Ollama containers across backend layers</span>
+      </li>
+      <li>
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <span>Install <strong style="color:var(--text)">Ollama</strong> locally and pull <code>llama3.2:3b</code>, <code>qwen2.5-coder:7b</code> and <code>nomic-embed-text</code></span>
+      </li>
+      <li>
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <span>Set up a <strong style="color:var(--text)">monorepo workspace</strong> — one single GitHub repository with consistent folder configurations</span>
+      </li>
+      <li>
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <span>Register a free <strong style="color:var(--text)">Finnhub API key</strong> — handles ticker processing profiles for the Fintech node</span>
+      </li>
+      <li>
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <span>Install <strong style="color:var(--text)">k6</strong> for server load testing and performance assertions</span>
+      </li>
+      <li>
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <span>Install <strong style="color:var(--text)">PyTorch</strong> and <strong style="color:var(--text)">NumPy</strong> — mathematical execution frameworks for lower structural steps</span>
+      </li>
+      <li>
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <span>Set up an <strong style="color:var(--text)">Obsidian or Notion log</strong> — track 3 specific weekly statements: built, broken, and resolved</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="projects">
+
+    <!-- PROJECT 1 -->
+    <div class="project-card p1">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P1 · WEEKS 1–4</div>
+        <div class="proj-title-block">
+          <h2>Local AI Evaluator & RAG Pipeline</h2>
+          <div class="tagline">Vector math · Open-source LLMs · Semantic search · pgvector</div>
+        </div>
+        <div class="proj-meta">
+          <span class="meta-pill">🧠 AI/ML</span>
+          <span class="meta-pill">Python · Next.js</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="project-body active">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>A document ingestion & chunking pipeline (PDF/text → vectors)</li>
+              <li>pgvector database storing semantic embeddings</li>
+              <li>Benchmarking harness: 2 models, 20 questions, logged results</li>
+              <li>Next.js dashboard: latency charts, accuracy scatterplots</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts You'll Learn</h4>
+            <ul>
+              <li>How embeddings encode meaning as numbers (cosine similarity)</li>
+              <li>Chunking strategy tradeoffs — size, overlap, recursive vs semantic</li>
+              <li>RAG architecture: retrieve → augment → generate</li>
+              <li>pgvector distance operators (L2, cosine, inner product)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="weeks-section">
+          <h3>Week-by-Week Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item">
+              <span class="week-num">WK 01</span>
+              <div class="week-content">
+                <strong>Ingestion & Chunking</strong>
+                <p>Install Ollama. Pull llama3.2:3b + deepseek-r1:7b. Write Python + LangChain script to load PDFs and chunk with RecursiveCharacterTextSplitter. Log how chunk count changes.</p>
+              </div>
+            </div>
+            <div class="week-item">
+              <span class="week-num">WK 02</span>
+              <div class="week-content">
+                <strong>The Vector Layer</strong>
+                <p>Launch PostgreSQL + pgvector in Docker. Convert chunks to embeddings using nomic-embed-text. Write Python to batch-insert vectors.</p>
+              </div>
+            </div>
+            <div class="week-item">
+              <span class="week-num">WK 03</span>
+              <div class="week-content">
+                <strong>The Benchmark Core</strong>
+                <p>Write a test loop: 20 questions → vector query → extract chunks → evaluate both models simultaneously → track tokens/sec metrics.</p>
+              </div>
+            </div>
+            <div class="week-item">
+              <span class="week-num">WK 04</span>
+              <div class="week-content">
+                <strong>Analytics Dashboard</strong>
+                <p>Build a Next.js admin page. Use Recharts to render: latency comparison bar chart, tokens/sec line graph, and quality scores.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips">
+          <span class="chip">Python</span><span class="chip">LangChain</span><span class="chip">Ollama</span><span class="chip">PostgreSQL</span><span class="chip">pgvector</span><span class="chip">Next.js</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="project-card p2">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P2 · WEEKS 5–8</div>
+        <div class="proj-title-block">
+          <h2>Distributed Cache-Aside System</h2>
+          <div class="tagline">Redis · Cache invalidation · Event-driven · Race condition protection</div>
+        </div>
+        <div class="proj-meta">
+          <span class="meta-pill">⚡ Backend</span>
+          <span class="meta-pill">Node.js / Go</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>PostgreSQL + Redis two-tier data layer in Docker</li>
+              <li>Cache-Aside middleware: Read Redis → miss → fetch PG → populate Redis</li>
+              <li>Atomic write layer: PUT/PATCH wraps SQL + Redis DEL in one transaction</li>
+              <li>k6 load test proving DB CPU drop with caching enabled</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts You'll Learn</h4>
+            <ul>
+              <li>Cache-Aside vs Write-Through vs Read-Through patterns</li>
+              <li>TTL design: too short = cache misses, too long = stale data</li>
+              <li>Dirty read problem and why atomic invalidation matters</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="weeks-section">
+          <h3>Week-by-Week Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item">
+              <span class="week-num">WK 05</span>
+              <div class="week-content">
+                <strong>Two-Tier Database Setup</strong>
+                <p>Docker Compose with PostgreSQL + Redis side by side. Seed 20,000 records. Write basic CRUD endpoints in Node.js without caching first.</p>
+              </div>
+            </div>
+            <div class="week-item">
+              <span class="week-num">WK 06</span>
+              <div class="week-content">
+                <strong>Cache-Aside Middleware</strong>
+                <p>Wrap GET endpoint: check Redis key first → if hit, return immediately → if miss, pull from PG and set entry with explicit TTL boundaries.</p>
+              </div>
+            </div>
+            <div class="week-item">
+              <span class="week-num">WK 07</span>
+              <div class="week-content">
+                <strong>Atomic Cache Invalidation</strong>
+                <p>Build the write path. On PUT/PATCH: wrap SQL UPDATE in a transaction, on commit success fire Redis DEL for that key to preserve consistency blocks.</p>
+              </div>
+            </div>
+            <div class="week-item">
+              <span class="week-num">WK 08</span>
+              <div class="week-content">
+                <strong>Load Test & Proof</strong>
+                <p>Write a k6 script tracking 3,000 virtual users ramping up over 60 seconds. Capture system resource graphs to isolate processing differentials.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips">
+          <span class="chip">Node.js (TypeScript)</span><span class="chip">PostgreSQL</span><span class="chip">Redis</span><span class="chip">Docker Compose</span><span class="chip">k6</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 3 -->
+    <div class="project-card p3">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P3 · WEEKS 9–12</div>
+        <div class="proj-title-block">
+          <h2>High-Performance Inventory Reservation Engine</h2>
+          <div class="tagline">Lua atomic scripts · BullMQ · Thread safety · Eventual consistency</div>
+        </div>
+        <div class="proj-meta">
+          <span class="meta-pill">🔒 Concurrency</span>
+          <span class="meta-pill">Redis · Node.js</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>High-throughput checkout endpoint with Redis in-memory stock tracking</li>
+              <li>Custom Lua script for atomic check-and-decrement (no race conditions)</li>
+              <li>BullMQ async worker pipeline writing confirmed orders to PostgreSQL</li>
+              <li>Chaos test: 2,000 concurrent buyers for 5 units — must be exactly 5 successes</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts You'll Learn</h4>
+            <ul>
+              <li>Why race conditions happen and what "atomicity" means in system threads</li>
+              <li>Redis single-threaded loop and why Lua scripts execute safely inside it</li>
+              <li>Message queue structural loops: producer ➔ queue ➔ background consumer</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="weeks-section">
+          <h3>Week-by-Week Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item">
+              <span class="week-num">WK 09</span>
+              <div class="week-content">
+                <strong>Concurrency Gateway Setup</strong>
+                <p>Seed Redis with stock counters. Build an unprotected checkout block and intentionally run non-atomic parallel steps to verify negative overlaps.</p>
+              </div>
+            </div>
+            <div class="week-item">
+              <span class="week-num">WK 10</span>
+              <div class="week-content">
+                <strong>The Lua Atomic Lock</strong>
+                <p>Write an isolated Lua routine: check limits, decrement values, and return metrics as one singular, non-interruptible atomic script execution block.</p>
+              </div>
+            </div>
+            <div class="week-item">
+              <span class="week-num">WK 11</span>
+              <div class="week-content">
+                <strong>Async Worker Pipeline</strong>
+                <p>Integrate BullMQ. Route success updates into worker queues, shifting disk transactional overhead completely out of runtime connection threads.</p>
+              </div>
+            </div>
+            <div class="week-item">
+              <span class="week-num">WK 12</span>
+              <div class="week-content">
+                <strong>The Chaos Script</strong>
+                <p>Execute 2,000 parallel connection processes targeting 5 limited resource instances. Write strict data state assertions to verify thread safety.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips">
+          <span class="chip">Node.js (TypeScript)</span><span class="chip">Redis</span><span class="chip">Lua Scripts</span><span class="chip">BullMQ</span><span class="chip">PostgreSQL</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 4 -->
+    <div class="project-card p4">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P4 · WEEKS 1–12 PARALLEL</div>
+        <div class="proj-title-block">
+          <h2>Arveend Terminal</h2>
+          <div class="tagline">Financial intelligence · WebSockets · RAG · Live screener · Paper trading</div>
+        </div>
+        <div class="proj-meta">
+          <span class="meta-pill">🏦 Fintech</span>
+          <span class="meta-pill">Full Stack</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>V1: Stock search, profiles, candlestick visualizations, portfolio balance modules</li>
+              <li>V2: Local AI parsing of news logs, vector-driven earnings summaries, grid filters</li>
+              <li>V3: WebSocket live price feed engines, system alerts, paper execution wallet structures</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts You'll Learn</h4>
+            <ul>
+              <li>Integrating and caching external tracking structures safely</li>
+              <li>Managing WebSocket channel boundaries, state retention, and event broadcasts</li>
+              <li>Data schema design mapping cost bases, portfolios, and ledger tracking logs</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="weeks-section">
+          <h3>Phase Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item">
+              <span class="week-num">V1 · WK 1–4</span>
+              <div class="week-content">
+                <strong>Core Tracking Engine</strong>
+                <p>Wire up Finnhub mappings behind a local storage cache. Create portfolio schemas and write P&L ledger tracking logic in Next.js configurations.</p>
+              </div>
+            </div>
+            <div class="week-item">
+              <span class="week-num">V2 · WK 5–8</span>
+              <div class="week-content">
+                <strong>Local Intelligence Layer</strong>
+                <p>Connect your P1 Ollama node. Extract contextual structural analytics from real-time financial tracking news files using <code>llama3.2:3b</code> mappings.</p>
+              </div>
+            </div>
+            <div class="week-item">
+              <span class="week-num">V3 · WK 9–12</span>
+              <div class="week-content">
+                <strong>Reactive Streaming & Paper Trading</strong>
+                <p>Launch Socket.io pipelines to broadcast ticks. Adapt your P3 transactional structure to enforce collision-free paper wallet balance trades.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips">
+          <span class="chip">Next.js 14</span><span class="chip">Node.js API</span><span class="chip">PostgreSQL</span><span class="chip">Redis</span><span class="chip">Socket.io</span><span class="chip">Ollama</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 5 (NEW: AGENT UI MODULE) -->
+    <div class="project-card p-agent">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P5 · WEEKS 13–15</div>
+        <div class="proj-title-block">
+          <h2>Visual Multi-Agent Workspace</h2>
+          <div class="tagline">Event-driven orchestration · Dynamic system prompt injection · Live WebSocket stream · BullMQ sequencing</div>
+        </div>
+        <div class="proj-meta">
+          <span class="meta-pill">🤖 AI Orchestration</span>
+          <span class="meta-pill">Next.js · Socket.io</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>A configuration dashboard managing multiple active local models synchronously</li>
+              <li>An isolation layer handling multi-role step assignments (Architect, Dev, QA)</li>
+              <li>A background worker manager buffering asynchronous prompt handoffs</li>
+              <li>A visual state monitor linking status indicators to worker processes</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts You'll Learn</h4>
+            <ul>
+              <li>Managing complex linear and parallel data propagation models cleanly</li>
+              <li>Streaming continuous token buffers asynchronously via WebSockets</li>
+              <li>Building state validation gates with manual human-in-the-loop steps</li>
+              <li>Applying queue topologies (BullMQ) to insulate systems from processing collisions</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="weeks-section">
+          <h3>Week-by-Week Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item">
+              <span class="week-num">WK 13</span>
+              <div class="week-content">
+                <strong>Dynamic Canvas Configuration</strong>
+                <p>Code a flexible Next.js view component handling dynamic model arrays. Isolate dedicated state fields capturing individual identities and step allocations per block element.</p>
+              </div>
+            </div>
+            <div class="week-item">
+              <span class="week-num">WK 14</span>
+              <div class="week-content">
+                <strong>Asynchronous Streaming Routing</strong>
+                <p>Establish a Socket.io bridge linking back-end generation outputs directly to custom workspace nodes. Handle real-time render optimizations for concurrent log tracks.</p>
+              </div>
+            </div>
+            <div class="week-item">
+              <span class="week-num">WK 15</span>
+              <div class="week-content">
+                <strong>Inter-Agent Pipeline Validation</strong>
+                <p>Construct sequential job routing filters. Pass markdown schema vectors downstream as input fields, and build approval intercept logic steps to govern transitions safely.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="divider"/>
+        <div class="alert-tip">
+          <span class="alert-icon">💡</span>
+          <span><strong>Engineering Insight:</strong> This workspace turns your high-performance backend patterns (P2, P3) into a visual toolkit. It maps custom logic across open weights, handling processing sequences securely.</span>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips">
+          <span class="chip">Next.js 14</span><span class="chip">Node.js</span><span class="chip">Socket.io</span><span class="chip">BullMQ</span><span class="chip">Ollama Engine</span><span class="chip">Tailwind CSS</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 6 -->
+    <div class="project-card p5">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P6 · WEEKS 16–18</div>
+        <div class="proj-title-block">
+          <h2>Transformer from Scratch</h2>
+          <div class="tagline">Neural networks · Multi-Head Attention · PyTorch math · Custom Tokenizers</div>
+        </div>
+        <div class="proj-meta">
+          <span class="meta-pill">🧬 Architecture</span>
+          <span class="meta-pill">Python · PyTorch</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>A decoder-only autoregressive language model in pure PyTorch</li>
+              <li>Custom character-level or Byte-Pair Encoding (BPE) tokenizer</li>
+              <li>A manual implementation of multi-head self-attention equations</li>
+              <li>A text-generation script trained on raw corpus logs</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts You'll Learn</h4>
+            <ul>
+              <li>The mathematical mechanics of attention matrices ($Q, K, V$)</li>
+              <li>Dimensional scaling across hidden layers and embedding contexts</li>
+              <li>Optimizing architectures using Cross-Entropy loss functions</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="weeks-section">
+          <h3>Week-by-Week Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item">
+              <span class="week-num">WK 16</span>
+              <div class="week-content">
+                <strong>Tokenization & Tensors</strong>
+                <p>Build a dataset text parser. Map unique characters to integers, create data loaders, and handle text sequence windowing allocations.</p>
+              </div>
+            </div>
+            <div class="week-item">
+              <span class="week-num">WK 17</span>
+              <div class="week-content">
+                <strong>The Attention Blocks</strong>
+                <p>Code the scaled dot-product attention module from scratch. Implement casual masking to block the network from looking ahead at future tokens.</p>
+              </div>
+            </div>
+            <div class="week-item">
+              <span class="week-num">WK 18</span>
+              <div class="week-content">
+                <strong>Training Loop & Evaluation</strong>
+                <p>Assemble the final transformer structure with residual links. Wire up the AdamW optimizer and evaluate linguistic updates over local training runs.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips">
+          <span class="chip">Python</span><span class="chip">PyTorch</span><span class="chip">NumPy</span><span class="chip">Tensor Math</span><span class="chip">BPE Tokenizers</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 7 -->
+    <div class="project-card p6">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P7 · WEEKS 19–21</div>
+        <div class="proj-title-block">
+          <h2>Vector Indexing Engine</h2>
+          <div class="tagline">Latent space · HNSW Graph Traversal · NumPy geometry · IVF Indexes</div>
+        </div>
+        <div class="proj-meta">
+          <span class="meta-pill">📐 Vector Geometry</span>
+          <span class="meta-pill">Python · NumPy</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>A standalone vector similarity index engine written without third-party DB layers</li>
+              <li>A manual Inverted File Index (IVF) k-means grouping algorithm</li>
+              <li>An Approximate Nearest Neighbor (ANN) lookup graph traversal model</li>
+              <li>Comparative benchmarks proving speed margins against flat queries</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts You'll Learn</h4>
+            <ul>
+              <li>High-dimensional spatial coordinates and geometric relationships</li>
+              <li>Why traditional database index structures (B-Trees) fail vector workloads</li>
+              <li>The core geometric logic executing behind your P1 pgvector instances</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="weeks-section">
+          <h3>Week-by-Week Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item">
+              <span class="week-num">WK 19</span>
+              <div class="week-content">
+                <strong>Flat Geometric Scans</strong>
+                <p>Generate high-dimensional vector arrays in NumPy. Code native cosine similarity and Euclidean calculations to set base benchmarks.</p>
+              </div>
+            </div>
+            <div class="week-item">
+              <span class="week-num">WK 20</span>
+              <div class="week-content">
+                <strong>Clustering Layers (IVF)</strong>
+                <p>Implement a manual k-means clustering function to group similar vector clusters and constrain operational target nodes under execution tests.</p>
+              </div>
+            </div>
+            <div class="week-item">
+              <span class="week-num">WK 21</span>
+              <div class="week-content">
+                <strong>Graph Engine Traversal</strong>
+                <p>Build proximity graphs linking spatial data. Code beam searches to chart nearest parameters, reviewing spatial lookups directly.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips">
+          <span class="chip">Python</span><span class="chip">NumPy</span><span class="chip">Vector Geometry</span><span class="chip">K-Means Core</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 8 -->
+    <div class="project-card p7">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P8 · WEEKS 22–25</div>
+        <div class="proj-title-block">
+          <h2>Quantization & Model Inference Engine</h2>
+          <div class="tagline">Bit-width reduction · INT4 Scaling · KV Caching · Hardware efficiency</div>
+        </div>
+        <div class="proj-meta">
+          <span class="meta-pill">💾 Low Level Systems</span>
+          <span class="meta-pill">Python / C++</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>A custom tensor model execution layer converting weights from FP32 down to INT4</li>
+              <li>A persistent Key-Value (KV) cache module tracking language state tokens</li>
+              <li>An inference harness running predictions via native file weight maps</li>
+              <li>Performance tracking analytics recording: Perplexity vs Processing Latency</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts You'll Learn</h4>
+            <ul>
+              <li>Quantization calculations, range scaling, and managing precision rounding errors</li>
+              <li>How KV caching shifts performance pipelines from compute limits to memory metrics</li>
+              <li>The low-bit optimizations that make tools like Ollama functional on edge devices</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="weeks-section">
+          <h3>Week-by-Week Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item">
+              <span class="week-num">WK 22</span>
+              <div class="week-content">
+                <strong>Weight Mapping & Extraction</strong>
+                <p>Extract tensor structures from open model checkpoints, tracking scale configurations across dense internal layer profiles.</p>
+              </div>
+            </div>
+            <div class="week-item">
+              <span class="week-num">WK 23</span>
+              <div class="week-content">
+                <strong>Quantization Engineering</strong>
+                <p>Code matrix conversion blocks to map floats directly to 4-bit integer profiles. Set scale offset handlers to limit structural output degradation.</p>
+              </div>
+            </div>
+            <div class="week-item">
+              <span class="week-num">WK 24</span>
+              <div class="week-content">
+                <strong>KV Cache Systems Implementation</strong>
+                <p>Adapt step sequence loops to buffer layer state constants in memory, bypassing recursive token re-evaluations across generation passes.</p>
+              </div>
+            </div>
+            <div class="week-item">
+              <span class="week-num">WK 25</span>
+              <div class="week-content">
+                <strong>Hardware Metrics Benchmark</strong>
+                <p>Isolate execution footprints across varying compression matrices, charting precise token throughput curves across standard memory allocations.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips">
+          <span class="chip">Python</span><span class="chip">Systems Math</span><span class="chip">KV Caching</span><span class="chip">Model Quantization</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER SUMMARY -->
+  <div class="footer-summary">
+    <h3>// End State After 25 Weeks</h3>
+    <div class="summary-grid">
+      <div class="sum-box">
+        <div class="sum-label">Total Projects Shipped</div>
+        <div class="sum-val">8</div>
+        <div class="sum-desc">Encompasses foundational API services, reactive user workspaces, multi-agent frameworks, and deep tensor systems code.</div>
+      </div>
+      <div class="sum-box">
+        <div class="sum-label">Core Technologies</div>
+        <div class="sum-val">18+</div>
+        <div class="sum-desc">Redis, Lua execution paths, WebSockets, BullMQ networks, PyTorch math, graph indices, and compression matrices.</div>
+      </div>
+      <div class="sum-box">
+        <div class="sum-label">Portfolio Footprint</div>
+        <div class="sum-val">Complete Masterclass</div>
+        <div class="sum-desc">Building the underlying neural layer math alongside multi-agent interface applications provides high-level validation across the full engineering landscape.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function toggle(header) {
+    const body = header.nextElementSibling;
+    const isActive = body.classList.contains('active');
+    // close all
+    document.querySelectorAll('.project-body').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.project-header').forEach(h => h.classList.remove('open'));
+    // open clicked if it wasn't already open
+    if (!isActive) {
+      body.classList.add('active');
+      header.classList.add('open');
+    }
+  }
+
+  function toggleCheck(box) {
+    box.classList.toggle('done');
+    const li = box.closest('li');
+    li.classList.toggle('done-item');
+  }
+
+  // init: open first project
+  document.querySelector('.project-header').classList.add('open');
+</script>
+</body>
+</html>

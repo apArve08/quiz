@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forever & Always</title>
+    <style>
+        :root {
+            --primary-color: #ff4d6d;
+            --secondary-color: #ffccd5;
+            --bg-color: #fff0f3;
+            --text-color: #590d22;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #fff0f3, #ffccd5, #fce4ec);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Palatino', 'Georgia', serif;
+            overflow: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Envelope */
+        .envelope-wrapper {
+            position: relative;
+            width: 320px;
+            height: 220px;
+            background-color: #ff8fa3;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .envelope-wrapper.open {
+            transform: translateY(120px);
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 160px solid transparent;
+            border-right: 160px solid transparent;
+            border-top: 110px solid #ff4d6d;
+            transform-origin: top;
+            transition: transform 0.6s ease-in-out;
+            z-index: 3;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .envelope-wrapper.open .envelope-flap {
+            transform: rotateX(180deg);
+        }
+
+        .envelope-body {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 160px solid #ffb3c1;
+            border-right: 160px solid #ffb3c1;
+            border-bottom: 110px solid #ff8fa3;
+            z-index: 2;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .letter {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 300px;
+            background: #fffcfc;
+            padding: 30px;
+            box-sizing: border-box;
+            text-align: center;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.1s, opacity 0.3s ease;
+            z-index: 1;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            color: var(--text-color);
+            border-radius: 8px;
+            border: 1px solid #eee;
+            background-image: radial-gradient(#fce4ec 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .envelope-wrapper.open .letter {
+            transform: translateY(-200px);
+            z-index: 4;
+            height: auto;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .letter h1 {
+            font-size: 26px;
+            color: var(--primary-color);
+            margin-top: 0;
+            font-family: 'Dancing Script', 'Palatino', serif;
+        }
+
+        #typewriter {
+            font-size: 17px;
+            line-height: 1.8;
+            min-height: 120px;
+            font-style: italic;
+        }
+
+        /* Love Meter & Surprise Section */
+        .interactive-section {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin-top: 60px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .love-meter-container {
+            text-align: center;
+            background: white;
+            padding: 25px;
+            border-radius: 30px;
+            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.2);
+            border: 2px solid var(--secondary-color);
+        }
+
+        .heart-fill {
+            font-size: 70px;
+            color: #eee;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            user-select: none;
+            display: inline-block;
+        }
+
+        .heart-fill:active {
+            transform: scale(0.8);
+        }
+
+        .heart-fill.full {
+            color: var(--primary-color);
+            text-shadow: 0 0 20px rgba(255, 77, 109, 0.5);
+        }
+
+        .reasons-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: transform 0.2s;
+        }
+
+        .reasons-btn:hover {
+            transform: scale(1.05);
+        }
+
+        #reason-text {
+            font-style: italic;
+            color: var(--text-color);
+            height: 20px;
+            margin-top: 10px;
+        }
+
+        /* Hearts Background */
+        .heart {
+            position: absolute;
+            color: var(--primary-color);
+            font-size: 20px;
+            user-select: none;
+            pointer-events: none;
+            animation: fly linear forwards;
+        }
+
+        @keyframes fly {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .instruction {
+            position: absolute;
+            bottom: -40px;
+            width: 100%;
+            text-align: center;
+            color: var(--text-color);
+            font-style: italic;
+        }
+
+        .music-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="music-control" id="musicToggle">🎵</button>
+
+    <div class="container">
+        <div class="envelope-wrapper" id="envelope" onclick="toggleEnvelope()">
+            <div class="envelope-flap"></div>
+            <div class="letter">
+                <h1>My Dearest Love,</h1>
+                <div id="typewriter"></div>
+                <p style="margin-top: 20px;">Always and forever,<br><strong>Me</strong></p>
+            </div>
+            <div class="envelope-body"></div>
+        </div>
+        <div class="instruction" id="hint">Click to open your letter</div>
+
+        <div class="interactive-section" id="interactiveSection">
+            <div class="love-meter-container">
+                <div class="heart-fill" id="loveHeart" onclick="fillLoveMeter()">❤️</div>
+                <p>Click the heart to show my love!</p>
+            </div>
+            <div style="text-align: center;">
+                <button class="reasons-btn" onclick="showReason()">Why I love you...</button>
+                <div id="reason-text"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const text = "I wanted to send you something special to remind you how much you mean to me. Every moment with you is a treasure, and every smile of yours brightens my entire world. You are my best friend, my soulmate, and my favorite person.";
+        let typeIdx = 0;
+        let isTyping = false;
+
+        function toggleEnvelope() {
+            const envelope = document.getElementById('envelope');
+            const section = document.getElementById('interactiveSection');
+            const hint = document.getElementById('hint');
+            
+            envelope.classList.toggle('open');
+            
+            if(envelope.classList.contains('open')) {
+                hint.style.opacity = '0';
+                section.style.display = 'flex';
+                if(!isTyping) startTyping();
+            } else {
+                section.style.display = 'none';
+                hint.style.opacity = '1';
+            }
+        }
+
+        function startTyping() {
+            isTyping = true;
+            const target = document.getElementById('typewriter');
+            target.innerHTML = "";
+            typeText();
+        }
+
+        function typeText() {
+            if (typeIdx < text.length) {
+                document.getElementById('typewriter').innerHTML += text.charAt(typeIdx);
+                typeIdx++;
+                setTimeout(typeText, 50);
+            }
+        }
+
+        const reasons = [
+            "Your beautiful smile",
+            "The way you support me",
+            "Your kind heart",
+            "How you make me laugh",
+            "Your intelligence",
+            "The way you look at me",
+            "Your amazing strength",
+            "Everything about you!"
+        ];
+
+        function showReason() {
+            const reasonText = document.getElementById('reason-text');
+            const randomReason = reasons[Math.floor(Math.random() * reasons.length)];
+            reasonText.innerText = randomReason;
+            for(let i=0; i<10; i++) createHeart(window.innerWidth/2 + (Math.random()*100-50), window.innerHeight/2 + (Math.random()*100-50));
+        }
+
+        let loveCount = 0;
+        function fillLoveMeter() {
+            const heart = document.getElementById('loveHeart');
+            loveCount++;
+            heart.classList.add('full');
+            if(loveCount % 5 === 0) {
+                for(let i=0; i<20; i++) createHeart(Math.random()*window.innerWidth, window.innerHeight);
+            }
+        }
+
+        function createHeart(x, y) {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.className = 'heart';
+            heart.style.left = (x - 10) + 'px';
+            heart.style.top = (y - 10) + 'px';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        document.addEventListener('mousedown', (e) => createHeart(e.clientX, e.clientY));
+        setInterval(() => createHeart(Math.random() * window.innerWidth, window.innerHeight), 800);
+
+        // Music logic (placeholder)
+        const musicBtn = document.getElementById('musicToggle');
+        let playing = false;
+        musicBtn.onclick = () => {
+            playing = !playing;
+            musicBtn.innerText = playing ? '⏸️' : '🎵';
+            // To actually play music, add: const audio = new Audio('link_to_mp3'); audio.play();
+        };
+    </script>
+</body>
+</html>
