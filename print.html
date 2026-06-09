@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>PRINT_POSTER_12M_SYSTEMS_AI</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+  :root {
+    --bg: #050508;
+    --surface: #0b0b12;
+    --border: #1f1f30;
+    --text: #e4e4ed;
+    --muted: #62627a;
+    
+    /* Phase Accent Palette */
+    --c-infra: #7c6af7;
+    --c-agent: #ff007f;
+    --c-math:  #6af7c4;
+    --c-ops:   #f79e6a;
+    --c-hw:    #6aa2f7;
+  }
+
+  /* Strict A4 Portrait Printable Constraints */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .a4-page {
+    width: 210mm;
+    height: 297mm;
+    padding: 12mm; /* High margin buffer to protect against printer clip bounds */
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+  }
+
+  /* Technical Blueprint Grid Layout Background */
+  .a4-page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(124,106,247,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(124,106,247,0.02) 1px, transparent 1px);
+    background-size: 25px 25px;
+    pointer-events: none;
+  }
+
+  /* HEADER BLOCK */
+  .poster-header {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: 18px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .title-area h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+  }
+  .title-area h1 span { color: var(--c-infra); }
+  .title-area p {
+    font-size: 9.5px;
+    color: var(--muted);
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .meta-block {
+    text-align: right;
+    font-size: 8.5px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* INFOGRAPHIC TIMELINE KEY */
+  .timeline-legend {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+  .legend-item {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: 8px;
+    font-size: 8px;
+    text-transform: uppercase;
+    border-top: 3px solid transparent;
+  }
+  .legend-item .phase-title { font-weight: 700; color: var(--text); display: block; margin-bottom: 2px;}
+  .legend-item.li-infra { border-top-color: var(--c-infra); }
+  .legend-item.li-agent { border-top-color: var(--c-agent); }
+  .legend-item.li-math  { border-top-color: var(--c-math); }
+  .legend-item.li-ops   { border-top-color: var(--c-ops); }
+  .legend-item.li-hw    { border-top-color: var(--c-hw); }
+
+  /* MAIN BLUEPRINT THREE-COLUMN GRID */
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    flex: 1;
+  }
+
+  .column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .column-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    padding-bottom: 4px;
+    border-bottom: 1px dashed var(--border);
+  }
+
+  /* COMPACT INFOGRAPHIC CARD DESIGN */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 10px; right: 10px;
+    height: 2px;
+  }
+  
+  /* Color Assignments mapped via pseudo-borders */
+  .infra::before { background: var(--c-infra); }
+  .agent::before { background: var(--c-agent); }
+  .math::before  { background: var(--c-math); }
+  .ops::before   { background: var(--c-ops); }
+  .hw::before    { background: var(--c-hw); }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 6px;
+  }
+  .card-id {
+    font-size: 8px;
+    font-weight: 700;
+    padding: 1px 4px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+  .infra .card-id { color: var(--c-infra); border-color: rgba(124,106,247,0.2); }
+  .agent .card-id { color: var(--c-agent); border-color: rgba(255,0,127,0.2); }
+  .math .card-id  { color: var(--c-math);  border-color: rgba(106,247,196,0.2); }
+  .ops .card-id   { color: var(--c-ops);  border-color: rgba(247,158,106,0.2); }
+  .hw .card-id    { color: var(--c-hw);   border-color: rgba(106,162,247,0.2); }
+
+  .card-weeks {
+    font-size: 8px;
+    color: var(--muted);
+    font-weight: 700;
+  }
+
+  .card h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 4px;
+    color: var(--text);
+  }
+  .card-tagline {
+    font-size: 8.5px;
+    color: var(--muted);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  
+  .card-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+    margin-top: auto;
+    padding-top: 6px;
+    border-top: 1px dashed rgba(255,255,255,0.03);
+  }
+  .chip {
+    font-size: 7.5px;
+    padding: 1px 4px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    color: #a0a0b5;
+  }
+
+  /* POSTER BLUEPRINT METRIC FOOTER */
+  .poster-footer {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: 10px 18px;
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 8px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .footer-metric span { color: var(--text); font-weight: 700; }
+
+  /* CSS PRINT CONFIGURATION FOR CLEAN HIGH-RESOLUTION OUTPUT */
+  @media print {
+    body, .a4-page {
+      width: 210mm;
+      height: 297mm;
+      margin: 0;
+      padding: 12mm;
+    }
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="a4-page">
+
+  <!-- HEADER -->
+  <div class="poster-header">
+    <div class="title-area">
+      <h1>SYSTEMS & AI CORE ENGINEERING <span>// 12M</span></h1>
+      <p>A Structured Master Plan From Distributed Infrastructure Down to Tensor Physics</p>
+    </div>
+    <div class="meta-block">
+      WORKSPACE SPECIFICATION v4.0<br/>
+      TARGET CALENDAR: 52 WEEKS / 14 BUILDS<br/>
+      LOCAL DISK STORAGE: SECURE / OFFLINE
+    </div>
+  </div>
+
+  <!-- INFOGRAPHIC LEGEND KEY -->
+  <div class="timeline-legend">
+    <div class="legend-item li-infra"><span class="phase-title">01 / Distributed Infra</span>Weeks 1–12</div>
+    <div class="legend-item li-agent"><span class="phase-title">02 / Orchestration</span>Weeks 13–15</div>
+    <div class="legend-item li-math"><span class="phase-title">03 / Neural Math</span>Weeks 16–25</div>
+    <div class="legend-item li-ops"><span class="phase-title">04 / Inference Ops</span>Weeks 26–34</div>
+    <div class="legend-item li-hw"><span class="phase-title">05 / Hardware Matrix</span>Weeks 35–40</div>
+  </div>
+
+  <!-- THREE COLUMN TIMELINE GRID -->
+  <div class="grid-container">
+    
+    <!-- COLUMN 1: WEEKS 1–12 PARALLEL LAYER -->
+    <div class="column">
+      <div class="column-title">Phase 01 // Core Foundations</div>
+      
+      <div class="card infra">
+        <div class="card-header">
+          <span class="card-id">P1</span>
+          <span class="card-weeks">W 01–04</span>
+        </div>
+        <h2>Local AI Evaluator & RAG</h2>
+        <p class="card-tagline">Semantic embedding window parsing and vector storage distance metrics tracking matrix loops.</p>
+        <div class="card-tech">
+          <span class="chip">Python</span><span class="chip">pgvector</span><span class="chip">Ollama</span>
+        </div>
+      </div>
+
+      <div class="card infra">
+        <div class="card-header">
+          <span class="card-id">P2</span>
+          <span class="card-weeks">W 05–08</span>
+        </div>
+        <h2>Distributed Cache-Aside</h2>
+        <p class="card-tagline">Two-tier database intercept proxy routines executing atomic transactional cache validation loops.</p>
+        <div class="card-tech">
+          <span class="chip">TypeScript</span><span class="chip">Redis</span><span class="chip">k6 Load</span>
+        </div>
+      </div>
+
+      <div class="card infra">
+        <div class="card-header">
+          <span class="card-id">P3</span>
+          <span class="card-weeks">W 09–12</span>
+        </div>
+        <h2>Concurrency Mutual Exclusion</h2>
+        <p class="card-tagline">Collision-free inventory processing pipelines backed by atomic multi-resource Lua scripts.</p>
+        <div class="card-tech">
+          <span class="chip">Lua</span><span class="chip">BullMQ</span><span class="chip">PostgreSQL</span>
+        </div>
+      </div>
+
+      <div class="card infra">
+        <div class="card-header">
+          <span class="card-id">P4</span>
+          <span class="card-weeks">W 01–12 [PARALLEL]</span>
+        </div>
+        <h2>Arveend Fintech Terminal</h2>
+        <p class="card-tagline">Integrated full-stack architecture processing real-time streaming asset feeds asynchronously.</p>
+        <div class="card-tech">
+          <span class="chip">Next.js 14</span><span class="chip">Socket.io</span><span class="chip">Ledger Schema</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLUMN 2: ORCHESTRATION & LOW LEVEL MATH -->
+    <div class="column">
+      <div class="column-title">Phase 02 & 03 // Deep Intelligence</div>
+      
+      <div class="card agent">
+        <div class="card-header">
+          <span class="card-id">P5</span>
+          <span class="card-weeks">W 13–15</span>
+        </div>
+        <h2>Multi-Agent Workspace UI</h2>
+        <p class="card-tagline">Event-driven multi-role state configuration grid mapping dynamic handoff validation loops.</p>
+        <div class="card-tech">
+          <span class="chip">Next.js</span><span class="chip">BullMQ</span><span class="chip">WebSockets</span>
+        </div>
+      </div>
+
+      <div class="card math">
+        <div class="card-header">
+          <span class="card-id">P6</span>
+          <span class="card-weeks">W 16–18</span>
+        </div>
+        <h2>Transformer from Scratch</h2>
+        <p class="card-tagline">Decoder-only neural processing configurations writing custom multi-head causal attention blocks.</p>
+        <div class="card-tech">
+          <span class="chip">PyTorch</span><span class="chip">BPE Tokenizer</span><span class="chip">AdamW</span>
+        </div>
+      </div>
+
+      <div class="card math">
+        <div class="card-header">
+          <span class="card-id">P7</span>
+          <span class="card-weeks">W 19–21</span>
+        </div>
+        <h2>Vector Proximity Index</h2>
+        <p class="card-tagline">Standalone graph indexing algorithms executing HNSW beam traversals across dimensional clusters.</p>
+        <div class="card-tech">
+          <span class="chip">Python</span><span class="chip">NumPy Math</span><span class="chip">K-Means</span>
+        </div>
+      </div>
+
+      <div class="card math">
+        <div class="card-header">
+          <span class="card-id">P8</span>
+          <span class="card-weeks">W 22–25</span>
+        </div>
+        <h2>Quantization Engine Core</h2>
+        <p class="card-tagline">Bit-width precision scalar mapping loops converting raw weight files from FP32 to INT4 arrays.</p>
+        <div class="card-tech">
+          <span class="chip">C++ / Python</span><span class="chip">KV Caching</span><span class="chip">Bit-Shifting</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLUMN 3: SYSTEM OPTIMIZATION FILTERS -->
+    <div class="column">
+      <div class="column-title">Phase 04 & 05 // Hardware Scale</div>
+      
+      <div class="card ops">
+        <div class="card-header">
+          <span class="card-id">P9</span>
+          <span class="card-weeks">W 26–27</span>
+        </div>
+        <h2>Sparse Mixture of Experts</h2>
+        <p class="card-tagline">Conditional multi-expert routing layers implementing auxiliary loss balancing matrices.</p>
+        <div class="card-tech">
+          <span class="chip">PyTorch</span><span class="chip">Softmax Gating</span><span class="chip">Sparsity</span>
+        </div>
+      </div>
+
+      <div class="card ops">
+        <div class="card-header">
+          <span class="card-id">P10</span>
+          <span class="card-weeks">W 28–29</span>
+        </div>
+        <h2>Speculative Decoder</h2>
+        <p class="card-tagline">Dual-model concurrent inference loops accelerating processing steps via token validation checks.</p>
+        <div class="card-tech">
+          <span class="chip">Ollama</span><span class="chip">Batch Testing</span><span class="chip">Lookahead</span>
+        </div>
+      </div>
+
+      <div class="card ops">
+        <div class="card-header">
+          <span class="card-id">P11</span>
+          <span class="card-weeks">W 30–31</span>
+        </div>
+        <h2>Automated Agent Evaluation</h2>
+        <p class="card-tagline">Programmatic grading systems compiling testing analytics within isolated sandboxed environments.</p>
+        <div class="card-tech">
+          <span class="chip">Docker SDK</span><span class="chip">Pass@K Metrics</span><span class="chip">CoT</span>
+        </div>
+      </div>
+
+      <div class="card ops">
+        <div class="card-header">
+          <span class="card-id">P12</span>
+          <span class="card-weeks">W 32–34</span>
+        </div>
+        <h2>LoRA Fine-Tuning Pipeline</h2>
+        <p class="card-tagline">Low-rank matrix injections modifying target model checkpoints via backpropagation tuning fields.</p>
+        <div class="card-tech">
+          <span class="chip">Hugging Face</span><span class="chip">PEFT Arrays</span><span class="chip">Adapters</span>
+        </div>
+      </div>
+
+      <div class="card hw">
+        <div class="card-header">
+          <span class="card-id">P13</span>
+          <span class="card-weeks">W 35–37</span>
+        </div>
+        <h2>SRAM Flash-Attention Simulator</h2>
+        <p class="card-tagline">Matrix tiling loops optimizing processing speeds by containing memory reads within local caches.</p>
+        <div class="card-tech">
+          <span class="chip">NumPy Memory</span><span class="chip">Tiling Logic</span><span class="chip">IO Reduction</span>
+        </div>
+      </div>
+
+      <div class="card hw">
+        <div class="card-header">
+          <span class="card-id">P14</span>
+          <span class="card-weeks">W 38–40</span>
+        </div>
+        <h2>Heterogeneous Model Offloader</h2>
+        <p class="card-tagline">Asynchronous memory streaming engines pulling model parameter weights across PCIe bus lanes.</p>
+        <div class="card-tech">
+          <span class="chip">PyTorch Core</span><span class="chip">Async Threads</span><span class="chip">PCIe Paths</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PRINT FOOTER METRIC PANEL -->
+  <div class="poster-footer">
+    <div class="footer-metric">TOTAL MILESTONES: <span>14 INTERACTIVE CODEBASES</span></div>
+    <div class="footer-metric">CORE STACK MAP: <span>REDIS / LUA / BULLMQ / PYTORCH / DOCKER CORE</span></div>
+    <div class="footer-metric">STATUS: <span>READY FOR DEPLOYMENT</span></div>
+  </div>
+
+</div>
+
+</body>
+</html>

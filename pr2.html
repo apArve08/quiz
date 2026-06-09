@@ -26,6 +26,9 @@
     --accent12: #6aa2f7;
     --accent13: #a26af7;
     --accent14: #e8c46e;
+    --accent15: #ffaa00;
+    --accent16: #00ffaa;
+    --accent-capstone: #00e5ff;
     --text: #e8e8f0;
     --muted: #6b6b80;
     --card: #13131d;
@@ -85,25 +88,22 @@
   /* TIMELINE OVERVIEW BAR */
   .timeline-bar {
     display: grid;
-    grid-template-columns: repeat(15, 1fr);
+    grid-template-columns: repeat(17, 1fr);
     gap: 2px;
     margin-bottom: 56px;
     border-radius: 8px;
     overflow: hidden;
   }
   @media(max-width: 1150px) {
-    .timeline-bar { grid-template-columns: repeat(5, 1fr); gap: 4px; }
+    .timeline-bar { grid-template-columns: repeat(6, 1fr); gap: 4px; }
   }
   @media(max-width: 640px) {
     .timeline-bar { grid-template-columns: repeat(3, 1fr); gap: 4px; }
   }
-  @media(max-width: 400px) {
-    .timeline-bar { grid-template-columns: repeat(2, 1fr); }
-  }
   .tl-seg {
-    padding: 14px 4px;
+    padding: 14px 2px;
     font-family: 'Syne', sans-serif;
-    font-size: 9px;
+    font-size: 8px;
     font-weight: 700;
     letter-spacing: 0.5px;
     text-transform: uppercase;
@@ -112,8 +112,8 @@
     text-align: center;
   }
   .tl-seg:hover { opacity: 0.85; }
-  .tl-seg .num { font-size: 15px; font-weight: 800; display:block; margin-bottom: 4px; }
-  .tl-seg .weeks { font-size: 8px; opacity: 0.7; white-space: nowrap; }
+  .tl-seg .num { font-size: 14px; font-weight: 800; display:block; margin-bottom: 4px; }
+  .tl-seg .weeks { font-size: 7px; opacity: 0.7; white-space: nowrap; }
   
   .tl-seg-1 { background: #1a1535; border-top: 3px solid var(--accent1); color: var(--accent1); }
   .tl-seg-2 { background: #1a1215; border-top: 3px solid var(--accent2); color: var(--accent2); }
@@ -130,6 +130,8 @@
   .tl-seg-13 { background: #101624; border-top: 3px solid var(--accent12); color: var(--accent12); }
   .tl-seg-14 { background: #171024; border-top: 3px solid var(--accent13); color: var(--accent13); }
   .tl-seg-15 { background: #242010; border-top: 3px solid var(--accent14); color: var(--accent14); }
+  .tl-seg-16 { background: #241400; border-top: 3px solid var(--accent15); color: var(--accent15); }
+  .tl-seg-17 { background: #002414; border-top: 3px solid var(--accent16); color: var(--accent16); }
 
   /* PROJECT CARDS */
   .projects { display: flex; flex-direction: column; gap: 40px; }
@@ -171,6 +173,9 @@
   .p13 .proj-num { background: rgba(106,162,247,0.15); color: var(--accent12); border: 1px solid rgba(106,162,247,0.3); }
   .p14 .proj-num { background: rgba(162,106,247,0.15); color: var(--accent13); border: 1px solid rgba(162,106,247,0.3); }
   .p15 .proj-num { background: rgba(232,196,110,0.15); color: var(--accent14); border: 1px solid rgba(232,196,110,0.3); }
+  .p16 .proj-num { background: rgba(255,170,0,0.15); color: var(--accent15); border: 1px solid rgba(255,170,0,0.3); }
+  .p17 .proj-num { background: rgba(0,255,170,0.15); color: var(--accent16); border: 1px solid rgba(0,255,170,0.3); }
+  .cap-num { background: rgba(0,229,255,0.15); color: var(--accent-capstone); border: 1px solid rgba(0,229,255,0.3); }
 
   .proj-title-block { flex:1; }
   .proj-title-block h2 { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 6px; }
@@ -206,6 +211,9 @@
   .p13 .info-box h4 { color: var(--accent12); }
   .p14 .info-box h4 { color: var(--accent13); }
   .p15 .info-box h4 { color: var(--accent14); }
+  .p16 .info-box h4 { color: var(--accent15); }
+  .p17 .info-box h4 { color: var(--accent16); }
+  .cap-card .info-box h4 { color: var(--accent-capstone); }
 
   .info-box ul { list-style: none; }
   .info-box ul li { font-size: 12px; color: var(--muted); line-height: 1.6; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.04); display: flex; gap: 8px; align-items: flex-start; }
@@ -233,17 +241,18 @@
   .p13 .week-item { border-left-color: rgba(106,162,247,0.4); }
   .p14 .week-item { border-left-color: rgba(162,106,247,0.4); }
   .p15 .week-item { border-left-color: rgba(232,196,110,0.4); }
+  .p16 .week-item { border-left-color: rgba(255,170,0,0.4); }
+  .p17 .week-item { border-left-color: rgba(0,255,170,0.4); }
+  .cap-card .week-item { border-left-color: rgba(0,229,255,0.4); }
 
   .week-num { font-size: 10px; font-weight: 500; letter-spacing: 1px; white-space: nowrap; margin-top: 1px; opacity: 0.5; }
   .week-content { flex:1; }
   .week-content strong { display: block; font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 3px; font-family: 'Syne', sans-serif; }
   .week-content p { font-size: 11px; color: var(--muted); line-height: 1.6; }
 
-  /* STACK CHIPS */
+  /* CHIPS & DIVIDER */
   .stack-chips { display:flex; flex-wrap:wrap; gap:6px; }
   .chip { font-size: 10px; padding: 3px 9px; border-radius: 3px; background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid rgba(255,255,255,0.08); }
-
-  /* DIVIDER */
   .divider { border:none; border-top: 1px solid var(--border); margin: 20px 0; }
 
   /* FOOTER SUMMARY */
@@ -270,14 +279,12 @@
 <body>
 <div class="wrapper">
 
-  <!-- HEADER -->
   <div class="header">
     <div class="eyebrow">// self-learn roadmap · 2025–2026</div>
-    <h1>15 Projects.<br/><span>Systems & AI Core Mastery</span></h1>
-    <p>A rigorous master class spanning performant application infrastructure, event orchestration, neural mathematics, MLOps, hardware simulation, and byte-level dictionary compression streams.</p>
+    <h1>17 Core Systems Builds.<br/><span>Plus Tier-1 Capstone Production Suites.</span></h1>
+    <p>A master class progression spanning performant backend synchronization, neural physics, distributed multi-device topology scheduling, and high-availability enterprise design paths.</p>
   </div>
 
-  <!-- TIMELINE BAR -->
   <div class="timeline-bar">
     <div class="tl-seg tl-seg-1"><span class="num">P1</span>RAG<div class="weeks">W1-4</div></div>
     <div class="tl-seg tl-seg-2"><span class="num">P2</span>Cache<div class="weeks">W5-8</div></div>
@@ -294,9 +301,10 @@
     <div class="tl-seg tl-seg-13"><span class="num">P13</span>Flash<div class="weeks">W35-37</div></div>
     <div class="tl-seg tl-seg-14"><span class="num">P14</span>Off<div class="weeks">W38-40</div></div>
     <div class="tl-seg tl-seg-15"><span class="num">P15</span>Zip<div class="weeks">W41-43</div></div>
+    <div class="tl-seg tl-seg-16"><span class="num">P16</span>Sched<div class="weeks">W44-46</div></div>
+    <div class="tl-seg tl-seg-17"><span class="num">P17</span>TP<div class="weeks">W47-52</div></div>
   </div>
 
-  <!-- PREPARATION BOX -->
   <div class="info-box p1" style="margin-bottom:40px;">
     <h4 style="color:var(--accent1)">// Before You Start — Preparation Checklist</h4>
     <ul class="checklist" id="checklist">
@@ -309,10 +317,8 @@
     </ul>
   </div>
 
-  <!-- PROJECTS CONTAINER -->
   <div class="projects">
 
-    <!-- PROJECT 1 -->
     <div class="project-card p1">
       <div class="project-header" onclick="toggle(this)">
         <div class="proj-num">P1 · WEEKS 1–4</div>
@@ -327,7 +333,7 @@
           <div class="info-box">
             <h4>What You're Building</h4>
             <ul>
-              <li>Document ingestion & chunking pipeline (PDF/text → vectors)</li>
+              <li>Document Ingestion & chunking pipeline (PDF/text → vectors)</li>
               <li>pgvector database storing semantic embeddings</li>
               <li>Model benchmarking harness tracking generations</li>
             </ul>
@@ -354,7 +360,6 @@
       </div>
     </div>
 
-    <!-- PROJECT 2 -->
     <div class="project-card p2">
       <div class="project-header" onclick="toggle(this)">
         <div class="proj-num">P2 · WEEKS 5–8</div>
@@ -396,7 +401,6 @@
       </div>
     </div>
 
-    <!-- PROJECT 3 -->
     <div class="project-card p3">
       <div class="project-header" onclick="toggle(this)">
         <div class="proj-num">P3 · WEEKS 9–12</div>
@@ -438,11 +442,10 @@
       </div>
     </div>
 
-    <!-- PROJECT 4 -->
     <div class="project-card p4">
       <div class="project-header" onclick="toggle(this)">
         <div class="proj-num">P4 · WEEKS 1–12 PARALLEL</div>
-        <div class="proj-title-block">
+        <div class="project-title-block">
           <h2>Arveend Terminal</h2>
           <div class="tagline">Financial intelligence · WebSockets · RAG · Live screener · Paper trading</div>
         </div>
@@ -479,7 +482,6 @@
       </div>
     </div>
 
-    <!-- PROJECT 5 -->
     <div class="project-card p5">
       <div class="project-header" onclick="toggle(this)">
         <div class="proj-num">P5 · WEEKS 13–15</div>
@@ -520,11 +522,10 @@
       </div>
     </div>
 
-    <!-- PROJECT 6 -->
     <div class="project-card p6">
       <div class="project-header" onclick="toggle(this)">
         <div class="proj-num">P6 · WEEKS 16–18</div>
-        <div class="proj-title-block">
+        <div class="project-title-block">
           <h2>Transformer from Scratch</h2>
           <div class="tagline">Neural networks · Multi-Head Attention · PyTorch math · Custom Tokenizers</div>
         </div>
@@ -561,7 +562,6 @@
       </div>
     </div>
 
-    <!-- PROJECT 7 -->
     <div class="project-card p7">
       <div class="project-header" onclick="toggle(this)">
         <div class="proj-num">P7 · WEEKS 19–21</div>
@@ -602,11 +602,10 @@
       </div>
     </div>
 
-    <!-- PROJECT 8 -->
     <div class="project-card p8">
       <div class="project-header" onclick="toggle(this)">
         <div class="proj-num">P8 · WEEKS 22–25</div>
-        <div class="project-title-block">
+        <div class="proj-title-block">
           <h2>Quantization & Model Inference Engine</h2>
           <div class="tagline">Bit-width reduction · INT4 Scaling · KV Caching · Hardware efficiency</div>
         </div>
@@ -644,11 +643,10 @@
       </div>
     </div>
 
-    <!-- PROJECT 9 -->
     <div class="project-card p9">
       <div class="project-header" onclick="toggle(this)">
         <div class="proj-num">P9 · WEEKS 26–27</div>
-        <div class="proj-title-block">
+        <div class="project-title-block">
           <h2>Sparse Mixture of Experts (MoE) Transformer</h2>
           <div class="tagline">Sparsity · Gating Routers · Top-K routing · Auxiliary Load Balancing Loss</div>
         </div>
@@ -684,7 +682,6 @@
       </div>
     </div>
 
-    <!-- PROJECT 10 -->
     <div class="project-card p10">
       <div class="project-header" onclick="toggle(this)">
         <div class="proj-num">P10 · WEEKS 28–29</div>
@@ -724,7 +721,6 @@
       </div>
     </div>
 
-    <!-- PROJECT 11 -->
     <div class="project-card p11">
       <div class="project-header" onclick="toggle(this)">
         <div class="proj-num">P11 · WEEKS 30–31</div>
@@ -764,11 +760,10 @@
       </div>
     </div>
 
-    <!-- PROJECT 12 -->
     <div class="project-card p12">
       <div class="project-header" onclick="toggle(this)">
         <div class="proj-num">P12 · WEEKS 32–34</div>
-        <div class="proj-title-block">
+        <div class="project-title-block">
           <h2>Knowledge Distillation & Fine-Tuning Pipeline</h2>
           <div class="tagline">LoRA Adaptations · PEFT architectures · Weight-freezing matrices · Dataset structuring</div>
         </div>
@@ -805,11 +800,10 @@
       </div>
     </div>
 
-    <!-- PROJECT 13 -->
     <div class="project-card p13">
       <div class="project-header" onclick="toggle(this)">
         <div class="proj-num">P13 · WEEKS 35–37</div>
-        <div class="proj-title-block">
+        <div class="project-title-block">
           <h2>GPU SRAM Flash-Attention Simulator</h2>
           <div class="tagline">Memory-bound operators · SRAM vs HBM · IO complexity reduction · Tiling algorithms</div>
         </div>
@@ -828,7 +822,7 @@
           <div class="info-box">
             <h4>Core Concepts</h4>
             <ul>
-              <li>Understanding why massive intermediate $N \times N$ attention calculations cause hardware memory latency bottlenecks</li>
+              <li>Understanding why massive volume attention calculations cause hardware memory latency bottlenecks</li>
               <li>Using block partitioning mathematics to drastically scale context capabilities on low hardware profiles</li>
             </ul>
           </div>
@@ -846,11 +840,10 @@
       </div>
     </div>
 
-    <!-- PROJECT 14 -->
     <div class="project-card p14">
       <div class="project-header" onclick="toggle(this)">
         <div class="proj-num">P14 · WEEKS 38–40</div>
-        <div class="project-title-block">
+        <div class="proj-title-block">
           <h2>Heterogeneous Memory Layer & Model Offloader</h2>
           <div class="tagline">Unified Memory · CPU-GPU PCIe bus transit · Layer-by-layer streaming · Resource scheduling</div>
         </div>
@@ -887,7 +880,6 @@
       </div>
     </div>
 
-    <!-- PROJECT 15 -->
     <div class="project-card p15">
       <div class="project-header" onclick="toggle(this)">
         <div class="proj-num">P15 · WEEKS 41–43</div>
@@ -928,26 +920,185 @@
       </div>
     </div>
 
+    <div class="project-card p16">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P16 · WEEKS 44–46</div>
+        <div class="project-title-block">
+          <h2>Distributed High-Availability Job Scheduler</h2>
+          <div class="tagline">Optimistic row-level locking · Redis ZSET indexes · Lease-based worker ownership · Heartbeat trackers</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">⚙️ Distributed Coordination</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>A highly resilient, multi-node task trigger engine that processes millions of scheduled jobs with exact-match precision</li>
+              <li>A lease-management worker fleet utilizing atomic state claims to prevent duplicate execution loops</li>
+              <li>An integrated time-indexed scheduler cluster querying global tasks using Redis sorted sets (ZSET)</li>
+              <li>A fault-tolerant dead-letter recovery pipeline isolating and recycling ghost tasks when worker processes crash</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>The Scheduling Paradox: Navigating strict tradeoffs between system task durability and concurrent double-firing risks</li>
+              <li>Optimistic concurrency controls: Utilizing explicit `UPDATE WHERE status='SCHEDULED'` transaction boundaries</li>
+              <li>Designing push-based message streaming loops to move storage coordination completely off hot infrastructure paths</li>
+            </ul>
+          </div>
+        </div>
+        <div class="weeks-section">
+          <h3>Week-by-Week Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item"><span class="week-num">WK 44</span><div class="week-content"><strong>Time-Indexed Sorted Stores</strong><p>Configure a multi-instance scheduler polling a shared Postgres store indexed via Redis ZSETs for constant-time lookups ($O(\log N)$).</p></div></div>
+            <div class="week-item"><span class="week-num">WK 45</span><div class="week-content"><strong>Atomic Lease Acquisition Loop</strong><p>Write an automated worker verification engine. Implement row-level compare-and-swap (CAS) locks to prevent dual node execution allocations.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 46</span><div class="week-content"><strong>Zombie Process Extermination</strong><p>Code an internal background heartbeat audit monitor. Automatically release and reschedule tasks if an assigned worker drops connection lines mid-job.</p></div></div>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Go / TypeScript</span><span class="chip">Redis ZSET</span><span class="chip">PostgreSQL</span><span class="chip">CAS Locking</span></div>
+      </div>
+    </div>
+
+    <div class="project-card p17">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P17 · WEEKS 47–52</div>
+        <div class="project-title-block">
+          <h2>Distributed Multi-GPU Tensor Parallelism Engine</h2>
+          <div class="tagline">Matrix sharding math · Column vs Row parallelism · NCCL collective kernels · All-Reduce synchronization</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">🧬 Advanced Deep Learning</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>A distributed tensor execution manager that shards linear layers evenly across simulated or clustered worker devices</li>
+              <li>A manual implementation of Column Parallelism for up-projection operations ($W_{gate} \cdot W_{up}$)</li>
+              <li>Horizontal Row Parallelism architectures sharding down-projections with dedicated synchronization blocks</li>
+              <li>An integrated multi-process collective communication module executing custom-coded **All-Reduce** network loops</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Slicing billion-parameter matrix networks vertically and horizontally along deep hidden layer dimensions</li>
+              <li>Isolating interconnect communication overhead bottlenecks forced by network synchronization protocols (All-Reduce / All-Gather)</li>
+              <li>The design architecture differences separating Tensor Parallelism (intra-node layer splits) from Pipeline Parallelism</li>
+            </ul>
+          </div>
+        </div>
+        <div class="weeks-section">
+          <h3>Week-by-Week Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item"><span class="week-num">WK 47</span><div class="week-content"><strong>Column Parallelism Sharding</strong><p>Extract core projection parameters out of model frames. Slice weight matrices vertically and route shards cleanly across independent tracking processes.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 48</span><div class="week-content"><strong>Horizontal Row Sharding Math</strong><p>Code down-projection matrix operations across split devices horizontally, generating partial mathematical tensor layers synchronously.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 49</span><div class="week-content"><strong>All-Reduce Kernel Assembly</strong><p>Write an operational multi-process loop that aggregates and redistributes partial vector states across nodes using raw collective communications.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 50</span><div class="week-content"><strong>Distributed Network Scale Profiling</strong><p>Configure multi-device tests using torch.distributed. Monitor latency outputs, graph execution bounds, and track interconnect bandwidth metrics.</p></div></div>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Python</span><span class="chip">PyTorch Distributed</span><span class="chip">NCCL Kernels</span><span class="chip">Tensor Parallelism</span></div>
+      </div>
+    </div>
+
+    <div style="margin-top: 56px; margin-bottom: 24px;">
+      <h2 style="font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: var(--accent-capstone); text-transform: uppercase; letter-spacing: 2px;">⚡ Tier-1 Production Capstone Phase (1 Year Per Suite)</h2>
+      <p style="color: var(--muted); font-size: 13px; margin-top: 4px;">Fusing all prior software systems infrastructure, neural mathematics, and concurrent coordination into standalone market platforms.</p>
+    </div>
+
+    <div class="project-card cap-card" style="border-color: var(--accent-capstone);">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num cap-num">CAPSTONE 01 · DURATION: 1 YEAR</div>
+        <div class="project-title-block">
+          <h2>The Hydra Engine: Disaggregated Multi-Tenant Inference Cluster</h2>
+          <div class="tagline">Phase splitting (Prefill vs Decode) · Distributed PagedAttention KV-Pool pools · Continuous Batching schedulers · NIXL transport connectors</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill" style="color: var(--accent-capstone);">🛡️ Hyperscale Core</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>Platform Scale & Architecture</h4>
+            <ul>
+              <li>An enterprise-grade serving platform separating compute-bound **Prefill clusters** from memory-bound **Decode nodes** over low-latency networks</li>
+              <li>A high-performance controller pipeline executing automated **Continuous Batching** and request scheduling tasks natively</li>
+              <li>An asynchronous distributed KV-Cache streaming engine powered by **NIXL connectors** and RDMA memory transfers</li>
+              <li>Multi-tenant concurrency barriers combining your P3 atomic mutex handlers with custom P16 job management nodes</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Underlying Component Integrations</h4>
+            <ul>
+              <li><strong>Frontend Gateway UI:</strong> Anchored by your P4 Terminal / P5 Agent canvas channels to monitor text output generations live via WebSockets</li>
+              <li><strong>The Compute Muscle:</strong> Prefill arrays parse documents using P1 pgvector structures, running inputs through P13 FlashAttention blocks</li>
+              <li><strong>The Execution Pool:</strong> Decode nodes cache state pools using P8 INT4 configurations, running speculative lookup passes via P10 algorithms</li>
+              <li><strong>Data Transportation:</strong> Cache allocations are serialized, compressed via P15 Zstd dictionaries, and streamed over P14 bus pathways</li>
+            </ul>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Go / C++ Core</span><span class="chip">vLLM Architecture</span><span class="chip">NIXL Tensors</span><span class="chip">Continuous Batching</span><span class="chip">PagedAttention Pool</span></div>
+      </div>
+    </div>
+
+    <div class="project-card cap-card" style="border-color: var(--accent-capstone);">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num cap-num">CAPSTONE 02 · DURATION: 1 YEAR</div>
+        <div class="project-title-block">
+          <h2>Industrial AI Operations Copilot for Manufacturing</h2>
+          <div class="tagline">Edge computer vision loops · Industrial IoT MQTT streaming · Timeseries anomaly filters · Fault-tolerant local execution</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill" style="color: var(--accent-capstone);">🏭 Industrial Automation</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>Platform Scale & Architecture</h4>
+            <ul>
+              <li>A robust local edge automation infrastructure tracking multi-facility plant metrics and video streams in real-time</li>
+              <li>Low-latency telemetry handlers processing high-frequency physical equipment signals over **MQTT server clusters**</li>
+              <li>Local machine vision model integrations intercepting video data to monitor defect thresholds or asset tracking vectors</li>
+              <li>An automated alerting circuit routing anomaly warnings down to localized multi-channel dispatch frameworks instantly</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Underlying Component Integrations</h4>
+            <ul>
+              <li><strong>Hardware Ingestion:</strong> Connects directly to IoT controllers, feeding sensory metrics straight into your P15 chunk compressor layer</li>
+              <li><strong>Distributed Scheduling:</strong> Employs your P16 task scheduler models to distribute factory machine inspection sequences and log rotations safely</li>
+              <li><strong>Localized Analytics:</strong> Leverages P8 INT4 quantized weights to compute computer-vision classifications locally without relying on cloud loops</li>
+              <li><strong>Fault-Tolerant Cache:</strong> Adapts P2/P3 two-tier synchronization models to preserve factory log data during sudden site network outages</li>
+            </ul>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Python / C++ Core</span><span class="chip">MQTT Brokers</span><span class="chip">Edge Computer Vision</span><span class="chip">Timeseries Anomaly Pools</span><span class="chip">Industrial IoT</span></div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- FOOTER SUMMARY -->
   <div class="footer-summary">
-    <h3>// Year-End Architecture Footprint</h3>
+    <h3>// Total Master Curriculum Scope</h3>
     <div class="summary-grid">
       <div class="sum-box">
-        <div class="sum-label">Total Projects Shipped</div>
-        <div class="sum-val">15</div>
-        <div class="sum-desc">Traversing scalable distributed architecture endpoints, multi-agent frameworks, raw neural networks, and raw byte-level streaming compressions.</div>
+        <div class="sum-label">Core Systems Shipped</div>
+        <div class="sum-val">17 Projects</div>
+        <div class="sum-desc">From basic text RAG structures up to multi-gpu row/column matrix sharding kernels and distributed lease schedulers.</div>
       </div>
       <div class="sum-box">
-        <div class="sum-label">Core Technologies</div>
-        <div class="sum-val">25+</div>
-        <div class="sum-desc">Redis, Lua, BullMQ, WebSockets, PyTorch, NumPy, low-level libzstd frameworks, and custom indexing graphs.</div>
+        <div class="sum-label">Capstone Implementations</div>
+        <div class="sum-val">2 Full Platforms</div>
+        <div class="sum-desc">The Hydra Engine serving ecosystem and the Industrial AI Operations Copilot tracking active manufacturing parameters.</div>
       </div>
       <div class="sum-box">
-        <div class="sum-label">Recruiter Impact</div>
-        <div class="sum-val">Distinguished</div>
-        <div class="sum-desc">Proving that you can build highly optimized storage layers alongside advanced data architectures isolates your profile completely.</div>
+        <div class="sum-label">Target Career Tier</div>
+        <div class="sum-val">Principal / Principal Lead</div>
+        <div class="sum-desc">Bridging pure transactional concurrency patterns directly with hardware computing boundaries commands the top tier of infrastructure fields.</div>
       </div>
     </div>
   </div>
