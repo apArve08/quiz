@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Self-Learn Roadmap: Advanced Systems & AI Core</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500;700&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --border: #1e1e2e;
+    --accent1: #7c6af7;
+    --accent2: #f76a6a;
+    --accent3: #6af7c4;
+    --accent4: #f7c46a;
+    --accent-agent: #ff007f;
+    --accent5: #f76ae2;
+    --accent6: #6adbf7;
+    --accent7: #b3f76a;
+    --accent8: #d16af7;
+    --accent9: #6af7e0;
+    --accent10: #f79e6a;
+    --accent11: #f76a6a;
+    --accent12: #6aa2f7;
+    --accent13: #a26af7;
+    --accent14: #e8c46e;
+    --accent15: #ffaa00;
+    --accent16: #00ffaa;
+    --accent17: #ff0055;
+    --accent18: #00e5ff;
+    --accent19: #9d4edd;
+    --accent20: #ccff33;
+    --accent21: #ff5400;
+    --accent22: #70e000;
+    --accent23: #3a86c8;
+    --accent24: #ff007f;
+    --accent25: #00f5d4;
+    --accent26: #ffb703;
+    --accent27: #fb5607;
+    --accent28: #8338ec;
+    --accent-graph: #3a0ca3;
+    --accent-capstone: #00e5ff;
+    --text: #e8e8f0;
+    --muted: #6b6b80;
+    --card: #13131d;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* GRID BG */
+  body::before {
+    content:'';
+    position:fixed;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(124,106,247,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(124,106,247,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  .wrapper { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:48px 24px 80px; }
+
+  /* HEADER */
+  .header { margin-bottom: 56px; }
+  .header .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent1);
+    margin-bottom: 12px;
+  }
+  .header h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text);
+  }
+  .header h1 span { color: var(--accent1); }
+  .header p {
+    margin-top: 16px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  /* TIMELINE OVERVIEW BAR - UPGRADED TO RESPONSIVE GRID FOR 29 SEGMENTS */
+  .timeline-bar {
+    display: grid;
+    grid-template-columns: repeat(29, 1fr);
+    gap: 1px;
+    margin-bottom: 56px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  @media(max-width: 1200px) {
+    .timeline-bar { grid-template-columns: repeat(10, 1fr); gap: 3px; }
+  }
+  @media(max-width: 768px) {
+    .timeline-bar { grid-template-columns: repeat(6, 1fr); gap: 3px; }
+  }
+  @media(max-width: 480px) {
+    .timeline-bar { grid-template-columns: repeat(4, 1fr); gap: 3px; }
+  }
+  .tl-seg {
+    padding: 10px 1px;
+    font-family: 'Syne', sans-serif;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    text-align: center;
+  }
+  .tl-seg:hover { opacity: 0.85; }
+  .tl-seg .num { font-size: 11px; font-weight: 800; display:block; margin-bottom: 2px; }
+  .tl-seg .weeks { font-size: 6px; opacity: 0.6; white-space: nowrap; }
+  
+  .tl-seg-1 { background: #1a1535; border-top: 2px solid var(--accent1); color: var(--accent1); }
+  .tl-seg-2 { background: #1a1215; border-top: 2px solid var(--accent2); color: var(--accent2); }
+  .tl-seg-3 { background: #0f1a16; border-top: 2px solid var(--accent3); color: var(--accent3); }
+  .tl-seg-4 { background: #1a1710; border-top: 2px solid var(--accent4); color: var(--accent4); }
+  .tl-seg-5 { background: #2b0c1b; border-top: 2px solid var(--accent-agent); color: var(--accent-agent); }
+  .tl-seg-6 { background: #241221; border-top: 2px solid var(--accent5); color: var(--accent5); }
+  .tl-seg-7 { background: #0f1d24; border-top: 2px solid var(--accent6); color: var(--accent6); }
+  .tl-seg-8 { background: #162410; border-top: 2px solid var(--accent7); color: var(--accent7); }
+  .tl-seg-9 { background: #1b1024; border-top: 2px solid var(--accent8); color: var(--accent8); }
+  .tl-seg-10 { background: #102422; border-top: 2px solid var(--accent9); color: var(--accent9); }
+  .tl-seg-11 { background: #241a10; border-top: 2px solid var(--accent10); color: var(--accent10); }
+  .tl-seg-12 { background: #241010; border-top: 2px solid var(--accent11); color: var(--accent11); }
+  .tl-seg-13 { background: #101624; border-top: 2px solid var(--accent12); color: var(--accent12); }
+  .tl-seg-14 { background: #171024; border-top: 2px solid var(--accent13); color: var(--accent13); }
+  .tl-seg-15 { background: #242010; border-top: 2px solid var(--accent14); color: var(--accent14); }
+  .tl-seg-16 { background: #241400; border-top: 2px solid var(--accent15); color: var(--accent15); }
+  .tl-seg-17 { background: #002414; border-top: 2px solid var(--accent16); color: var(--accent16); }
+  .tl-seg-18 { background: #240010; border-top: 2px solid var(--accent17); color: var(--accent17); }
+  .tl-seg-19 { background: #001f24; border-top: 2px solid var(--accent18); color: var(--accent18); }
+  .tl-seg-20 { background: #1d0024; border-top: 2px solid var(--accent19); color: var(--accent19); }
+  .tl-seg-21 { background: #1f2400; border-top: 2px solid var(--accent20); color: var(--accent20); }
+  .tl-seg-22 { background: #241000; border-top: 2px solid var(--accent21); color: var(--accent21); }
+  .tl-seg-23 { background: #0d2400; border-top: 2px solid var(--accent22); color: var(--accent22); }
+  .tl-seg-24 { background: #001224; border-top: 2px solid var(--accent23); color: var(--accent23); }
+  .tl-seg-25 { background: #24001b; border-top: 2px solid var(--accent24); color: var(--accent24); }
+  .tl-seg-26 { background: #002421; border-top: 2px solid var(--accent25); color: var(--accent25); }
+  .tl-seg-27 { background: #241f00; border-top: 2px solid var(--accent26); color: var(--accent26); }
+  .tl-seg-28 { background: #240c00; border-top: 2px solid var(--accent27); color: var(--accent27); }
+  .tl-seg-29 { background: #120024; border-top: 2px solid var(--accent28); color: var(--accent28); }
+
+  /* PROJECT CARDS */
+  .projects { display: flex; flex-direction: column; gap: 40px; }
+  .project-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+
+  .project-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 28px 28px 24px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .project-header:hover { background: rgba(255,255,255,0.02); }
+
+  .proj-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 4px;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    margin-top: 3px;
+  }
+  .p1 .proj-num { background: rgba(124,106,247,0.15); color: var(--accent1); border: 1px solid rgba(124,106,247,0.3); }
+  .p2 .proj-num { background: rgba(247,106,106,0.15); color: var(--accent2); border: 1px solid rgba(247,106,106,0.3); }
+  .p3 .proj-num { background: rgba(106,247,196,0.15); color: var(--accent3); border: 1px solid rgba(106,247,196,0.3); }
+  .p4 .proj-num { background: rgba(247,196,106,0.15); color: var(--accent4); border: 1px solid rgba(247,196,106,0.3); }
+  .p5 .proj-num { background: rgba(255,0,127,0.15); color: var(--accent-agent); border: 1px solid rgba(255,0,127,0.3); }
+  .p6 .proj-num { background: rgba(247,106,226,0.15); color: var(--accent5); border: 1px solid rgba(247,106,226,0.3); }
+  .p7 .proj-num { background: rgba(106,219,247,0.15); color: var(--accent6); border: 1px solid rgba(106,219,247,0.3); }
+  .p8 .proj-num { background: rgba(179,247,106,0.15); color: var(--accent7); border: 1px solid rgba(179,247,106,0.3); }
+  .p9 .proj-num { background: rgba(209,106,247,0.15); color: var(--accent8); border: 1px solid rgba(209,106,247,0.3); }
+  .p10 .proj-num { background: rgba(106,247,224,0.15); color: var(--accent9); border: 1px solid rgba(106,247,224,0.3); }
+  .p11 .proj-num { background: rgba(247,158,106,0.15); color: var(--accent10); border: 1px solid rgba(247,158,106,0.3); }
+  .p12 .proj-num { background: rgba(247,106,106,0.15); color: var(--accent11); border: 1px solid rgba(247,106,106,0.3); }
+  .p13 .proj-num { background: rgba(106,162,247,0.15); color: var(--accent12); border: 1px solid rgba(106,162,247,0.3); }
+  .p14 .proj-num { background: rgba(162,106,247,0.15); color: var(--accent13); border: 1px solid rgba(162,106,247,0.3); }
+  .p15 .proj-num { background: rgba(232,196,110,0.15); color: var(--accent14); border: 1px solid rgba(232,196,110,0.3); }
+  .p16 .proj-num { background: rgba(255,170,0,0.15); color: var(--accent15); border: 1px solid rgba(255,170,0,0.3); }
+  .p17 .proj-num { background: rgba(0,255,170,0.15); color: var(--accent16); border: 1px solid rgba(0,255,170,0.3); }
+  .p18 .proj-num { background: rgba(255,0,85,0.15); color: var(--accent17); border: 1px solid rgba(255,0,85,0.3); }
+  .p19 .proj-num { background: rgba(0,229,255,0.15); color: var(--accent18); border: 1px solid rgba(0,229,255,0.3); }
+  .p20 .proj-num { background: rgba(157,78,221,0.15); color: var(--accent19); border: 1px solid rgba(157,78,221,0.3); }
+  .p21 .proj-num { background: rgba(204,255,51,0.15); color: var(--accent20); border: 1px solid rgba(204,255,51,0.3); }
+  .p22 .proj-num { background: rgba(255,84,0,0.15); color: var(--accent21); border: 1px solid rgba(255,84,0,0.3); }
+  .p23 .proj-num { background: rgba(112,224,0,0.15); color: var(--accent22); border: 1px solid rgba(112,224,0,0.3); }
+  .p24 .proj-num { background: rgba(58,134,200,0.15); color: var(--accent23); border: 1px solid rgba(58,134,200,0.3); }
+  .p25 .proj-num { background: rgba(255,0,127,0.15); color: var(--accent24); border: 1px solid rgba(255,0,127,0.3); }
+  .p26 .proj-num { background: rgba(0,245,212,0.15); color: var(--accent25); border: 1px solid rgba(0,245,212,0.3); }
+  .p27 .proj-num { background: rgba(255,183,3,0.15); color: var(--accent26); border: 1px solid rgba(255,183,3,0.3); }
+  .p28 .proj-num { background: rgba(251,86,7,0.15); color: var(--accent27); border: 1px solid rgba(251,86,7,0.3); }
+  .p29 .proj-num { background: rgba(131,56,236,0.15); color: var(--accent28); border: 1px solid rgba(131,56,236,0.3); }
+  .cap-num { background: rgba(0,229,255,0.15); color: var(--accent-capstone); border: 1px solid rgba(0,229,255,0.3); }
+
+  .proj-title-block { flex:1; }
+  .proj-title-block h2 { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+  .proj-title-block .tagline { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  .proj-meta { display: flex; gap: 20px; align-items: center; }
+  .meta-pill { font-size: 11px; padding: 4px 10px; border-radius: 20px; background: rgba(255,255,255,0.05); color: var(--muted); white-space: nowrap; }
+  .chevron { font-size: 14px; color: var(--muted); transition: transform 0.3s; margin-left: 8px; }
+  .open .chevron { transform: rotate(180deg); }
+
+  .project-body { display:none; padding: 28px; }
+  .project-body.active { display:block; }
+
+  /* SECTIONS INSIDE CARD */
+  .section-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+  @media(max-width:640px){ .section-grid { grid-template-columns:1fr; } }
+
+  .info-box { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 18px; }
+  .info-box h4 { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+  
+  .p1 .info-box h4 { color: var(--accent1); }
+  .p2 .info-box h4 { color: var(--accent2); }
+  .p3 .info-box h4 { color: var(--accent3); }
+  .p4 .info-box h4 { color: var(--accent4); }
+  .p5 .info-box h4 { color: var(--accent-agent); }
+  .p6 .info-box h4 { color: var(--accent5); }
+  .p7 .info-box h4 { color: var(--accent6); }
+  .p8 .info-box h4 { color: var(--accent7); }
+  .p9 .info-box h4 { color: var(--accent8); }
+  .p10 .info-box h4 { color: var(--accent9); }
+  .p11 .info-box h4 { color: var(--accent10); }
+  .p12 .info-box h4 { color: var(--accent11); }
+  .p13 .info-box h4 { color: var(--accent12); }
+  .p14 .info-box h4 { color: var(--accent13); }
+  .p15 .info-box h4 { color: var(--accent14); }
+  .p16 .info-box h4 { color: var(--accent15); }
+  .p17 .info-box h4 { color: var(--accent16); }
+  .p18 .info-box h4 { color: var(--accent17); }
+  .p19 .info-box h4 { color: var(--accent18); }
+  .p20 .info-box h4 { color: var(--accent19); }
+  .p21 .info-box h4 { color: var(--accent20); }
+  .p22 .info-box h4 { color: var(--accent21); }
+  .p23 .info-box h4 { color: var(--accent22); }
+  .p24 .info-box h4 { color: var(--accent23); }
+  .p25 .info-box h4 { color: var(--accent24); }
+  .p26 .info-box h4 { color: var(--accent25); }
+  .p27 .info-box h4 { color: var(--accent26); }
+  .p28 .info-box h4 { color: var(--accent27); }
+  .p29 .info-box h4 { color: var(--accent28); }
+  .cap-card .info-box h4 { color: var(--accent-capstone); }
+
+  .info-box ul { list-style: none; }
+  .info-box ul li { font-size: 12px; color: var(--muted); line-height: 1.6; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.04); display: flex; gap: 8px; align-items: flex-start; }
+  .info-box ul li:last-child { border-bottom: none; }
+  .info-box ul li::before { content:'›'; color: var(--text); opacity:0.4; flex-shrink:0; }
+
+  /* WEEK BREAKDOWN */
+  .weeks-section { margin-bottom: 24px; }
+  .weeks-section h3 { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+  .week-list { display: flex; flex-direction: column; gap: 8px; }
+  .week-item { display: flex; gap: 14px; align-items: flex-start; padding: 12px 14px; background: var(--surface); border-radius: 6px; border-left: 3px solid transparent; }
+  
+  .p1 .week-item { border-left-color: rgba(124,106,247,0.4); }
+  .p2 .week-item { border-left-color: rgba(247,106,106,0.4); }
+  .p3 .week-item { border-left-color: rgba(106,247,196,0.4); }
+  .p4 .week-item { border-left-color: rgba(247,196,106,0.4); }
+  .p5 .week-item { border-left-color: rgba(255,0,127,0.4); }
+  .p6 .week-item { border-left-color: rgba(247,106,226,0.4); }
+  .p7 .week-item { border-left-color: rgba(106,219,247,0.4); }
+  .p8 .week-item { border-left-color: rgba(179,247,106,0.4); }
+  .p9 .week-item { border-left-color: rgba(209,106,247,0.4); }
+  .p10 .week-item { border-left-color: rgba(106,247,224,0.4); }
+  .p11 .week-item { border-left-color: rgba(247,158,106,0.4); }
+  .p12 .week-item { border-left-color: rgba(247,106,106,0.4); }
+  .p13 .week-item { border-left-color: rgba(106,162,247,0.4); }
+  .p14 .week-item { border-left-color: rgba(162,106,247,0.4); }
+  .p15 .week-item { border-left-color: rgba(232,196,110,0.4); }
+  .p16 .week-item { border-left-color: rgba(255,170,0,0.4); }
+  .p17 .week-item { border-left-color: rgba(0,255,170,0.4); }
+  .p18 .week-item { border-left-color: rgba(255,0,85,0.4); }
+  .p19 .week-item { border-left-color: rgba(0,229,255,0.4); }
+  .p20 .week-item { border-left-color: rgba(157,78,221,0.4); }
+  .p21 .week-item { border-left-color: rgba(204,255,51,0.4); }
+  .p22 .week-item { border-left-color: rgba(255,84,0,0.4); }
+  .p23 .week-item { border-left-color: rgba(112,224,0,0.4); }
+  .p24 .week-item { border-left-color: rgba(58,134,200,0.4); }
+  .p25 .week-item { border-left-color: rgba(255,0,127,0.4); }
+  .p26 .week-item { border-left-color: rgba(0,245,212,0.4); }
+  .p27 .week-item { border-left-color: rgba(255,183,3,0.4); }
+  .p28 .week-item { border-left-color: rgba(251,86,7,0.4); }
+  .p29 .week-item { border-left-color: rgba(131,56,236,0.4); }
+  .cap-card .week-item { border-left-color: rgba(0,229,255,0.4); }
+
+  .week-num { font-size: 10px; font-weight: 500; letter-spacing: 1px; white-space: nowrap; margin-top: 1px; opacity: 0.5; }
+  .week-content { flex:1; }
+  .week-content strong { display: block; font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 3px; font-family: 'Syne', sans-serif; }
+  .week-content p { font-size: 11px; color: var(--muted); line-height: 1.6; }
+
+  /* CHIPS & DIVIDER */
+  .stack-chips { display:flex; flex-wrap:wrap; gap:6px; }
+  .chip { font-size: 10px; padding: 3px 9px; border-radius: 3px; background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid rgba(255,255,255,0.08); }
+  .divider { border:none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+  /* FOOTER SUMMARY */
+  .footer-summary { margin-top: 56px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 28px; }
+  .footer-summary h3 { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 20px; color: var(--text); }
+  .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media(max-width:640px){ .summary-grid { grid-template-columns:1fr; } }
+  .sum-box { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+  .sum-box .sum-label { font-size: 10px; letter-spacing:2px; text-transform:uppercase; color: var(--muted); margin-bottom:8px; }
+  .sum-box .sum-val { font-family:'Syne',sans-serif; font-size:20px; font-weight:800; color:var(--text); }
+  .sum-box .sum-desc { font-size:11px; color:var(--muted); margin-top:4px; line-height:1.5; }
+
+  /* PREP CHECKLIST */
+  .checklist { list-style:none; }
+  .checklist li { display:flex; gap:10px; align-items:flex-start; font-size:12px; color:var(--muted); line-height:1.6; padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.04); }
+  .checklist li:last-child { border-bottom:none; }
+  .check-box { width:14px; height:14px; border:1px solid var(--border); border-radius:3px; flex-shrink:0; margin-top:2px; display:flex; align-items:center; justify-content:center; cursor:pointer; transition: all 0.15s; }
+  .check-box:hover { border-color: var(--accent1); }
+  .check-box.done { background:var(--accent1); border-color:var(--accent1); }
+  .check-box.done::after { content:'✓'; font-size:9px; color:white; }
+  .checklist li.done-item span { text-decoration: line-through; opacity:0.4; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="eyebrow">// Master Learning Blueprint · Systems & Infrastructure</div>
+    <h1>29 Deep Infrastructure Builds.<br/><span>Plus Tier-1 Capstone Architecture Suites.</span></h1>
+    <p>An exhaustive master tracking curriculum spanning performant application design, automated model fine-tuning, telemetry pipelines, hardware compilers, and real-time automation twins.</p>
+  </div>
+
+  <!-- TIMELINE BAR -->
+  <div class="timeline-bar">
+    <div class="tl-seg tl-seg-1"><span class="num">1</span><div class="weeks">W1-4</div></div>
+    <div class="tl-seg tl-seg-2"><span class="num">2</span><div class="weeks">W5-8</div></div>
+    <div class="tl-seg tl-seg-3"><span class="num">3</span><div class="weeks">W9-12</div></div>
+    <div class="tl-seg tl-seg-4"><span class="num">4</span><div class="weeks">W1-12P</div></div>
+    <div class="tl-seg tl-seg-5"><span class="num">5</span><div class="weeks">W13-15</div></div>
+    <div class="tl-seg tl-seg-6"><span class="num">6</span><div class="weeks">W16-18</div></div>
+    <div class="tl-seg tl-seg-7"><span class="num">7</span><div class="weeks">W19-21</div></div>
+    <div class="tl-seg tl-seg-8"><span class="num">8</span><div class="weeks">W22-25</div></div>
+    <div class="tl-seg tl-seg-9"><span class="num">9</span><div class="weeks">W26-27</div></div>
+    <div class="tl-seg tl-seg-10"><span class="num">10</span><div class="weeks">W28-29</div></div>
+    <div class="tl-seg tl-seg-11"><span class="num">11</span><div class="weeks">W30-31</div></div>
+    <div class="tl-seg tl-seg-12"><span class="num">12</span><div class="weeks">W32-34</div></div>
+    <div class="tl-seg tl-seg-13"><span class="num">13</span><div class="weeks">W35-37</div></div>
+    <div class="tl-seg tl-seg-14"><span class="num">14</span><div class="weeks">W38-40</div></div>
+    <div class="tl-seg tl-seg-15"><span class="num">15</span><div class="weeks">W41-43</div></div>
+    <div class="tl-seg tl-seg-16"><span class="num">16</span><div class="weeks">W44-46</div></div>
+    <div class="tl-seg tl-seg-17"><span class="num">17</span><div class="weeks">W47-52</div></div>
+    <div class="tl-seg tl-seg-18"><span class="num">18</span><div class="weeks">Ops</div></div>
+    <div class="tl-seg tl-seg-19"><span class="num">19</span><div class="weeks">Feat</div></div>
+    <div class="tl-seg tl-seg-20"><span class="num">20</span><div class="weeks">FSDP</div></div>
+    <div class="tl-seg tl-seg-21"><span class="num">21</span><div class="weeks">Kafka</div></div>
+    <div class="tl-seg tl-seg-22"><span class="num">22</span><div class="weeks">Sec</div></div>
+    <div class="tl-seg tl-seg-23"><span class="num">23</span><div class="weeks">Twin</div></div>
+    <div class="tl-seg tl-seg-24"><span class="num">24</span><div class="weeks">Krn</div></div>
+    <div class="tl-seg tl-seg-25"><span class="num">25</span><div class="weeks">Fuse</div></div>
+    <div class="tl-seg tl-seg-26"><span class="num">26</span><div class="weeks">PPO</div></div>
+    <div class="tl-seg tl-seg-27"><span class="num">27</span><div class="weeks">RLHF</div></div>
+    <div class="tl-seg tl-seg-28"><span class="num">28</span><div class="weeks">Hyb</div></div>
+    <div class="tl-seg tl-seg-29"><span class="num">29</span><div class="weeks">Graph</div></div>
+  </div>
+
+  <!-- PREPARATION BOX -->
+  <div class="info-box p1" style="margin-bottom:40px;">
+    <h4 style="color:var(--accent1)">// Workspace Prerequisites — Preparation Checklist</h4>
+    <ul class="checklist" id="checklist">
+      <li><div class="check-box" onclick="toggleCheck(this)"></div><span>Install <strong style="color:var(--text)">Docker Desktop</strong> — containerize and isolate relational clusters</span></li>
+      <li><div class="check-box" onclick="toggleCheck(this)"></div><span>Install <strong style="color:var(--text)">Ollama</strong> and cache processing checkpoints locally</span></li>
+      <li><div class="check-box" onclick="toggleCheck(this)"></div><span>Set up unified <strong style="color:var(--text)">monorepo structures</strong> with separate process boundaries</span></li>
+      <li><div class="check-box" onclick="toggleCheck(this)"></div><span>Install <strong style="color:var(--text)">k6</strong> for server load validation testing scripts</span></li>
+      <li><div class="check-box" onclick="toggleCheck(this)"></div><span>Install <strong style="color:var(--text)">PyTorch</strong>, <strong style="color:var(--text)">DeepSpeed</strong>, and <strong style="color:var(--text)">Triton Compiler dependencies</strong></span></li>
+      <li><div class="check-box" onclick="toggleCheck(this)"></div><span>Set up local <strong style="color:var(--text)">Apache Kafka, Neo4j, Keycloak, and Vault</strong> instances via multi-container Docker compose profiles</span></li>
+    </ul>
+  </div>
+
+  <!-- PROJECTS CONTAINER -->
+  <div class="projects">
+
+    <!-- PROJECT 1 -->
+    <div class="project-card p1">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P1 · 4 WEEKS</div>
+        <div class="proj-title-block">
+          <h2>Local AI Evaluator & RAG Pipeline</h2>
+          <div class="tagline">Vector math · Open-source LLMs · Semantic search · pgvector</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">🧠 AI Systems</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body active">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>Document ingestion & chunking pipeline (PDF/text → vectors)</li>
+              <li>pgvector database storing semantic embeddings</li>
+              <li>Model benchmarking harness tracking generations</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Embedding vector mechanics and distance bounds (L2, cosine similarity)</li>
+              <li>Chunking tradeoffs (recursive vs semantic spatial groupings)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="weeks-section">
+          <h3>Week-by-Week Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item"><span class="week-num">WK 01</span><div class="week-content"><strong>Ingestion & Chunking</strong><p>Install Ollama. Write Python script to parse PDFs into text arrays using RecursiveCharacterTextSplitter patterns.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 02</span><div class="week-content"><strong>The Vector Layer</strong><p>Launch PostgreSQL + pgvector in Docker. Map text segments into numeric coordinate structures via nomic-embed-text.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 03</span><div class="week-content"><strong>The Benchmark Core</strong><p>Construct loops running test prompts concurrently across local targets, exporting evaluation readouts into logging files.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 04</span><div class="week-content"><strong>Analytics Dashboard</strong><p>Build a Next.js view. Use tracking widgets to monitor latency profiles and token-generation rates live.</p></div></div>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Python</span><span class="chip">pgvector</span><span class="chip">Ollama</span><span class="chip">Next.js</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="project-card p2">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P2 · 4 WEEKS</div>
+        <div class="project-title-block">
+          <h2>Distributed Cache-Aside System</h2>
+          <div class="tagline">Redis · Cache invalidation · Event-driven · Race condition protection</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">⚡ Backend</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>PostgreSQL + Redis two-tier data layer in Docker</li>
+              <li>Cache-Aside middleware evaluating records to intercept disk I/O requests</li>
+              <li>Atomic invalidation transactions purging cache entries safely during data updates</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Cache miss/hit routing loops and memory expiration windows</li>
+              <li>Protecting relational backends from query saturation during high consumer traffic</li>
+            </ul>
+          </div>
+        </div>
+        <div class="weeks-section">
+          <h3>Week-by-Week Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item"><span class="week-num">WK 05</span><div class="week-content"><strong>Two-Tier Database Setup</strong><p>Spin up Redis and Postgres containers in Docker. Seed tables with test logs to build base read profiles.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 06</span><div class="week-content"><strong>Cache-Aside Middleware</strong><p>Write Express middleware intercepting queries: check Redis keys first, on failure fall back to disk and populate cache.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 07</span><div class="week-content"><strong>Atomic Cache Invalidation</strong><p>Code the write path. Wrap SQL updates and Redis evictions in database transaction commits to avoid stale data blocks.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 08</span><div class="week-content"><strong>Load Test & Performance Metrics</strong><p>Execute load matrices with k6 tracking thousands of users. Capture CPU usage graphs to visually verify the optimization footprint.</p></div></div>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Node.js</span><span class="chip">Redis</span><span class="chip">PostgreSQL</span><span class="chip">k6</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 3 -->
+    <div class="project-card p3">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P3 · 4 WEEKS</div>
+        <div class="project-title-block">
+          <h2>High-Performance Inventory Reservation Engine</h2>
+          <div class="tagline">Lua atomic scripts · BullMQ · Thread safety · Eventual consistency</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">🔒 Concurrency</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>High-throughput checkout gateway tracking transactional parameters completely in memory</li>
+              <li>Custom evaluation locks using single-threaded Redis Lua scripts</li>
+              <li>Decoupled task pipelines buffering asset updates cleanly via message queues</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Race conditions, thread overlaps, and structural atomicity bounds</li>
+              <li>Shifting heavy write overhead entirely out of transactional application processes</li>
+            </ul>
+          </div>
+        </div>
+        <div class="weeks-section">
+          <h3>Week-by-Week Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item"><span class="week-num">WK 09</span><div class="week-content"><strong>Concurrency Gateway Setup</strong><p>Build an unshielded item checkout route. Trigger multi-threaded calls to watch counter records overlap and go negative.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 10</span><div class="week-content"><strong>The Lua Atomic Lock</strong><p>Write an integrated Redis Lua script. Execute inventory checks and decrements as one uninterruptible, isolated thread step.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 11</span><div class="week-content"><strong>Async Worker Pipeline</strong><p>Integrate BullMQ. Route inventory allocations straight into message lines, offloading database writes onto background consumers.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 12</span><div class="week-content"><strong>The Chaos Script</strong><p>Fire parallel bursts hitting limited allocations. Assert exact success limits to prove thread-safety models.</p></div></div>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">TypeScript</span><span class="chip">Redis Lua</span><span class="chip">BullMQ</span><span class="chip">Postgres</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 4 -->
+    <div class="project-card p4">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P4 · PARALLEL RUN</div>
+        <div class="project-title-block">
+          <h2>Arveend Terminal</h2>
+          <div class="tagline">Financial intelligence · WebSockets · RAG · Live screener · Paper trading</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">🏦 Fintech</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>Full-stack financial ledger tracking balance metrics dynamically</li>
+              <li>WebSocket channel networks broadcasting continuous pricing ticks safely</li>
+              <li>Local agent background tasks extracting sentiment profiles out of market logs</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Managing real-time bi-directional connection channels efficiently at scale</li>
+              <li>Updating canvas layout rendering layers without prompting full-page UI refreshes</li>
+            </ul>
+          </div>
+        </div>
+        <div class="weeks-section">
+          <h3>Week-by-Week Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item"><span class="week-num">PH 01</span><div class="week-content"><strong>Core Tracking Engine</strong><p>Integrate external financial data behind caching layers. Implement transaction schemas and asset ledger logic loops.</p></div></div>
+            <div class="week-item"><span class="week-num">PH 02</span><div class="week-content"><strong>Local Intelligence Integration</strong><p>Hook up your active Ollama instance. Feed ticker logs downstream to compile structured asset profiles autonomously.</p></div></div>
+            <div class="week-item"><span class="week-num">PH 03</span><div class="week-content"><strong>Reactive Streaming Systems</strong><p>Launch Socket.io servers to emit pricing ticks. Adapt your P3 mutex patterns to govern portfolio trading actions safely.</p></div></div>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Next.js 14</span><span class="chip">Socket.io</span><span class="chip">PostgreSQL</span><span class="chip">Ollama</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 5 -->
+    <div class="project-card p5">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P5 · 3 WEEKS</div>
+        <div class="project-title-block">
+          <h2>Visual Multi-Agent Workspace</h2>
+          <div class="tagline">Event-driven orchestration · Dynamic system prompt injection · Live WebSocket stream · BullMQ sequencing</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">🤖 AI Orchestration</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>Dynamic canvas dashboard managing multiple local model sessions synchronously</li>
+              <li>Sequential job routing channels handling structured prompt token transfers</li>
+              <li>State tracking panel linking color changes directly to worker execution loops</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Orchestrating long-running, multi-step agent actions without blocking operational event loops</li>
+              <li>Introducing hard intercept gates to facilitate manual human confirmation and editing passes safely</li>
+            </ul>
+          </div>
+        </div>
+        <div class="weeks-section">
+          <h3>Week-by-Week Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item"><span class="week-num">WK 13</span><div class="week-content"><strong>Dynamic Layout State Matrix</strong><p>Code a flexible form handling unique model parameters. Isolate fields to capture target instructions per active panel element.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 14</span><div class="week-content"><strong>Asynchronous Socket Streams</strong><p>Connect backend token stdout updates straight to front-end node fields. Optimize rendering loops to process fast multi-agent tracking queues.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 15</span><div class="week-content"><strong>Inter-Agent Job Validation</strong><p>Build multi-stage routing filters using BullMQ. Stream markdown plans down to developer loops, adding manual approval gates.</p></div></div>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Next.js</span><span class="chip">Socket.io</span><span class="chip">BullMQ</span><span class="chip">Ollama Core</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 6 -->
+    <div class="project-card p6">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P6 · 3 WEEKS</div>
+        <div class="project-title-block">
+          <h2>Transformer from Scratch</h2>
+          <div class="tagline">Neural networks · Multi-Head Attention · PyTorch math · Custom Tokenizers</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">🧬 Math & Architecture</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>A decoder-only autoregressive language framework coded in raw PyTorch matrices</li>
+              <li>A manual implementation of scaled dot-product multi-head attention blocks</li>
+              <li>An explicit optimization loop tracking loss rates over targeted training files</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Understanding attention equations ($QK^T / \sqrt{d_k}$) and causal tensor masking loops</li>
+              <li>Tracking dimensional expansions and matrix shapes across layer boundaries securely</li>
+            </ul>
+          </div>
+        </div>
+        <div class="weeks-section">
+          <h3>Week-by-Week Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item"><span class="week-num">WK 16</span><div class="week-content"><strong>Tokenization & Dataset Vectors</strong><p>Write an entry vocab index mapping strings to raw integers. Build target coordinate sliding windows for training tensors.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 17</span><div class="week-content"><strong>Attention Matrix Construction</strong><p>Code the core dot-product math from scratch. Add tracking masks to prevent cells from previewing downstream validation positions.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 18</span><div class="week-content"><strong>Gradients & Optimization Loops</strong><p>Stack layer links with residual paths. Wire up an AdamW optimizer, tracking error drops as text patterns slowly emerge.</p></div></div>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Python</span><span class="chip">PyTorch</span><span class="chip">Tensor Math</span><span class="chip">BPE Core</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 7 -->
+    <div class="project-card p7">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P7 · 3 WEEKS</div>
+        <div class="project-title-block">
+          <h2>Vector Indexing Engine</h2>
+          <div class="tagline">Latent space · HNSW Graph Traversal · NumPy geometry · IVF Indexes</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">📐 Geometry</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>A standalone dimensional index manager parsing similarities without third-party frameworks</li>
+              <li>An Inverted File Index (IVF) coordinator organizing data clusters via k-means</li>
+              <li>An Approximate Nearest Neighbor (ANN) spatial graph routing algorithm</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Why traditional linear indexes collapse under highly dimensional spatial requirements</li>
+              <li>Using mathematical vector grouping networks to accelerate lookup times to logarithmic rates</li>
+            </ul>
+          </div>
+        </div>
+        <div class="weeks-section">
+          <h3>Week-by-Week Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item"><span class="week-num">WK 19</span><div class="week-content"><strong>Exhaustive Distance Scans</strong><p>Generate high-dimensional array pools using NumPy. Code exact cosine loops to set performance latency benchmarks.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 20</span><div class="week-content"><strong>K-Means Spatial Cluster Sharding</strong><p>Write clustering scripts that partition vector models into neighborhood zones, limiting evaluation calculations under load tests.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 21</span><div class="week-content"><strong>Graph Traversal Search Loops</strong><p>Implement a minimal graph network linking nearby points. Code greedy beam searches to verify multi-dimensional lookup paths.</p></div></div>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Python</span><span class="chip">NumPy Core</span><span class="chip">Matrix Geometry</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 8 -->
+    <div class="project-card p8">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P8 · 4 WEEKS</div>
+        <div class="project-title-block">
+          <h2>Quantization & Model Inference Engine</h2>
+          <div class="tagline">Bit-width reduction · INT4 Scaling · KV Caching · Hardware efficiency</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">💾 Low Level Core</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>A scalar tracking manager converting model tensor files from FP32 down to INT4 variables</li>
+              <li>An in-memory Key-Value (KV) cache block maintaining layer states continuously</li>
+              <li>Performance telemetry tracing files documenting accuracy retention maps</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Range scale calculations, bit adjustments, and managing quantization rounding loss</li>
+              <li>Bypassing memory bandwidth bottlenecks by caching active attention histories securely</li>
+            </ul>
+          </div>
+        </div>
+        <div class="weeks-section">
+          <h3>Week-by-Week Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item"><span class="week-num">WK 22</span><div class="week-content"><strong>Tensor Parameter Extraction</strong><p>Load raw parameters out of model checkpoints. Trace layer weights and log variance bounds across array metrics.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 23</span><div class="week-content"><strong>Scalar Range Quantization</strong><p>Code scalar compression maps translating decimals to 4-bit space. Write inverse transforms to handle layer scaling updates.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 24</span><div class="week-content"><strong>KV Cache Layer Modification</strong><p>Adjust your forward pass routine. Buffer key-value calculations in memory to stop recursive attention passes.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 25</span><div class="week-content"><strong>Hardware Footprint Audits</strong><p>Run generation tasks across compressed layers versus standard models. Chart file footprint reduction and processing latencies.</p></div></div>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Python / C++</span><span class="chip">KV Caching</span><span class="chip">Bit Mathematics</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 9 -->
+    <div class="project-card p9">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P9 · 2 WEEKS</div>
+        <div class="project-title-block">
+          <h2>Sparse Mixture of Experts (MoE) Transformer</h2>
+          <div class="tagline">Sparsity · Gating Routers · Top-K routing · Auxiliary Load Balancing Loss</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">🧠 Model Routing</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>A dynamic gating router distributing incoming prompt tokens exclusively to specific target networks</li>
+              <li>An array of 8 distinct specialized feed-forward expert blocks inside your P6 transformer architecture</li>
+              <li>An internal tracking function calculating processing distribution balances to prevent load convergence</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Sparse network computation mechanics vs uniform, dense multi-parameter model structures</li>
+              <li>Deriving and implementing Auxiliary Loss functions to ensure uniform layer activation during loops</li>
+            </ul>
+          </div>
+        </div>
+        <div class="weeks-section">
+          <h3>Week-by-Week Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item"><span class="week-num">WK 26</span><div class="week-content"><strong>Gating Router Implementation</strong><p>Code a Softmax routing block in PyTorch. Design configuration paths to dynamically channel inputs strictly to Top-2 experts.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 27</span><div class="week-content"><strong>Auxiliary Loss Calculations</strong><p>Derive and add load-balancing penalty formulas to the forward training pass to insulate network layers from expert starvation bugs.</p></div></div>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">PyTorch</span><span class="chip">Softmax Gating</span><span class="chip">Sparsity Math</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 10 -->
+    <div class="project-card p10">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P10 · 2 WEEKS</div>
+        <div class="project-title-block">
+          <h2>Speculative Decoding Engine</h2>
+          <div class="tagline">Inference acceleration · Lookahead verification loops · Draft-Target dual models</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">⚡ Inference Ops</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>A multi-session parallel inference runner connecting a light draft model to a massive target network</li>
+              <li>An automated validation interceptor analyzing a generated lookahead text block simultaneously</li>
+              <li>Statistical acceptance and rejection loops verifying linguistic outputs via residual distribution metrics</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Shifting generation tasks away from memory-bandwidth bottlenecks toward parallel matrix compute calculations</li>
+              <li>Accelerating generation speeds cleanly while keeping text outputs identical to standard model parameters</li>
+            </ul>
+          </div>
+        </div>
+        <div class="weeks-section">
+          <h3>Week-by-Week Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item"><span class="week-num">WK 28</span><div class="week-content"><strong>Lookahead Generation Loop</strong><p>Wire up a small draft model to generate strings rapid-fire style. Isolate output tensors to build continuous prediction windows.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 29</span><div class="week-content"><strong>Parallel Target Verification</strong><p>Pass lookahead token blocks to a large model. Compute token validation checks inside one single parallel forward step.</p></div></div>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Python</span><span class="chip">Ollama Hooks</span><span class="chip">Batch Verification</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 11 -->
+    <div class="project-card p11">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P11 · 2 WEEKS</div>
+        <div class="project-title-block">
+          <h2>Automated Evaluation (LLM-as-a-Judge) Framework</h2>
+          <div class="tagline">Programmatic benchmarking · Isolated Docker Sandboxes · Pass@K metrics</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">🧪 MLOps Core</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>An automated testing infrastructure passing hundreds of code challenges straight to your local agents</li>
+              <li>A sandboxed, isolated execution layer running generated agent code paths securely inside Docker</li>
+              <li>A tracking system logging error states, compilation failures, and runtime execution latencies</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Replacing subjective "vibe-checks" with quantifiable, statistically verifiable engineering benchmarks</li>
+              <li>Calculating exact sample probability distributions (Pass@1 and Pass@K multi-sample equations)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="weeks-section">
+          <h3>Week-by-Week Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item"><span class="week-num">WK 30</span><div class="week-content"><strong>Docker Sandbox Isolation</strong><p>Write an operational Python script interfacing with the Docker SDK to run generated agent code safely inside temporary boxes.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 31</span><div class="week-content"><strong>Pass@K Analytics Implementation</strong><p>Code testing logic loops calculating programmatic multi-sample distributions, feeding data directly to metric logs.</p></div></div>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Docker SDK</span><span class="chip">Python</span><span class="chip">Pass@K Calculations</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 12 -->
+    <div class="project-card p12">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P12 · 3 WEEKS</div>
+        <div class="project-title-block">
+          <h2>Knowledge Distillation & Fine-Tuning Pipeline</h2>
+          <div class="tagline">LoRA Adaptations · PEFT architectures · Weight-freezing matrices · Dataset structuring</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">💾 Model Tuning</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>Synthetic, high-quality targeted code instruction datasets systematically harvested from large models</li>
+              <li>A specialized training loop freezing target foundation weights while updating low-rank additions exclusively</li>
+              <li>An optimization harness binding trained adapter tensors permanently back into core weight matrices</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Parameter-Efficient Fine-Tuning (PEFT) and low-rank matrix decomposition functions ($A \times B$ adapters)</li>
+              <li>Injecting deep domain expertise directly into a light model frame under a strict 6GB VRAM memory constraint</li>
+            </ul>
+          </div>
+        </div>
+        <div class="weeks-section">
+          <h3>Week-by-Week Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item"><span class="week-num">WK 32</span><div class="week-content"><strong>Synthetic Dataset Compilation</strong><p>Write extraction routines to parse high-quality instruction logs from corporate endpoints, packaging text arrays cleanly.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 33</span><div class="week-content"><strong>LoRA Adapter Layer Injection</strong><p>Use Hugging Face configurations to isolate attention vectors and configure low-rank matrix layers across targeted nodes.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 34</span><div class="week-content"><strong>Backpropagation Fine-Tuning</strong><p>Execute specialized local training epochs, monitoring loss metrics, and permanently merge resulting adapters back to base parameters.</p></div></div>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Hugging Face</span><span class="chip">PEFT Core</span><span class="chip">LoRA Tuning</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 13 -->
+    <div class="project-card p13">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P13 · 3 WEEKS</div>
+        <div class="project-title-block">
+          <h2>GPU SRAM Flash-Attention Simulator</h2>
+          <div class="tagline">Memory-bound operators · SRAM vs HBM · IO complexity reduction · Tiling algorithms</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">💾 Silicon Sim</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>An analytical tracer counting exactly how many megabytes are written to high-bandwidth global memory tiers</li>
+              <li>An execution tracker mapping the functional boundaries between slow global VRAM and fast on-chip SRAM layers</li>
+              <li>An incremental matrix tiling calculator resolving attention rows locally without creating huge variable pools</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Understanding why massive volume attention calculations cause hardware memory latency bottlenecks</li>
+              <li>Using block partitioning mathematics to drastically scale context capabilities on low hardware profiles</li>
+            </ul>
+          </div>
+        </div>
+        <div class="weeks-section">
+          <h3>Week-by-Week Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item"><span class="week-num">WK 35</span><div class="week-content"><strong>Standard Attention Memory Auditing</strong><p>Implement standard softmax attention steps. Trace capacity scales over massive contexts and chart memory resource spikes.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 36</span><div class="week-content"><strong>Tiling Sub-Matrix Implementations</strong><p>Divide tensor targets into hardware-aligned tiles. Code localized scaling tracking loops to bypass global variable drops.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 37</span><div class="week-content"><strong>Hardware I/O Profiling Dashboard</strong><p>Build performance analytics checking memory transactions against length adjustments, verifying operational throughput gains.</p></div></div>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Python</span><span class="chip">NumPy Memory</span><span class="chip">Tiling Logic</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 14 -->
+    <div class="project-card p14">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P14 · 3 WEEKS</div>
+        <div class="project-title-block">
+          <h2>Heterogeneous Memory Layer & Model Offloader</h2>
+          <div class="tagline">Unified Memory · CPU-GPU PCIe bus transit · Layer-by-layer streaming · Resource scheduling</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">⚙️ Hardware Interconnect</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>An infrastructure model sharder breaking layer blocks between affordable system RAM and local VRAM caches</li>
+              <li>An asynchronous multi-threaded scheduler streaming layer weights continuously across the physical PCIe bus line</li>
+              <li>A background pre-fetching script upload pipeline refreshing VRAM memory blocks while current processing chunks execute</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Physical computing boundaries: Navigating data transit delays between separate hardware motherboard registers</li>
+              <li>Keeping hardware core elements saturated by masking data transit latencies behind active execution phases</li>
+            </ul>
+          </div>
+        </div>
+        <div class="weeks-section">
+          <h3>Week-by-Week Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item"><span class="week-num">WK 38</span><div class="week-content"><strong>Static Structural Layer Sharding</strong><p>Write target configurations splitting long neural pathways systematically between system motherboard memory slots and VRAM chips.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 39</span><div class="week-content"><strong>Dynamic Offloading Run Loop</strong><p>Construct sequence logic layers passing token parameters step-by-step, shifting execution paths dynamically based on targets.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 40</span><div class="week-content"><strong>Asynchronous PCIe Pre-Fetching</strong><p>Add background thread fetching routines. Stream upcoming layer matrices across bus slots while current blocks execute, eliminating idle time.</p></div></div>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Python</span><span class="chip">PyTorch Hooks</span><span class="chip">Async Multi-Threading</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 15 -->
+    <div class="project-card p15">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P15 · 3 WEEKS</div>
+        <div class="project-title-block">
+          <h2>High-Throughput Timeseries Chunk Compressor</h2>
+          <div class="tagline">Real-time dictionary training · Lossless Zstd Streams · Error-bounded lossy quantizers · I/O serialization</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">💾 Byte Engineering</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>An analytical dictionary synthesizer compiling repeating JSON schema architectures into static binary index files</li>
+              <li>An error-bounded lossy pre-processor filtering floating-point metrics arrays via linear prediction constraints</li>
+              <li>A streaming binary serialization layer feeding compressed data continuously into network byte buffers</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Why compression fails on isolated small packets, and how dictionary pre-loading speeds up structural network channels</li>
+              <li>Balancing low-level optimization parameters: Measuring storage volume compression vs CPU processing execution time</li>
+            </ul>
+          </div>
+        </div>
+        <div class="weeks-section">
+          <h3>Week-by-Week Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item"><span class="week-num">WK 41</span><div class="week-content"><strong>Static Dictionary Synthesis</strong><p>Gather metric samples. Invoke Zstd training routines to generate an optimized binary layout file, checking packet optimization levels.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 42</span><div class="week-content"><strong>Error-Bounded Lossy Quantization</strong><p>Build a prediction filter rounding trailing bit variations while ensuring reconstructed variables stay within a 0.01% error limit.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 43</span><div class="week-content"><strong>Streaming Buffer Serialization</strong><p>Construct a sliding-window compression loop routing binary streams natively into memory blocks, plotting performance curves.</p></div></div>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Python / C++</span><span class="chip">libzstd</span><span class="chip">Dictionary Training</span><span class="chip">Lossy Processing</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 16 -->
+    <div class="project-card p16">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P16 · 3 WEEKS</div>
+        <div class="project-title-block">
+          <h2>Distributed High-Availability Job Scheduler</h2>
+          <div class="tagline">Optimistic row-level locking · Redis ZSET indexes · Lease-based worker ownership · Heartbeat trackers</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">⚙️ Orchestration</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>A multi-node task trigger engine processing millions of scheduled tasks via Redis sorted sets</li>
+              <li>A lease-management layer utilizing atomic state claims to prevent duplicate runs across fleets</li>
+              <li>A failover dead-letter cleanup monitor isolating and recycling abandoned execution lines safely</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>The distributed execution paradox: structural parameters ensuring task durability vs collision risks</li>
+              <li>Optimistic transaction isolation layers using explicit conditional statement query state boundaries</li>
+            </ul>
+          </div>
+        </div>
+        <div class="weeks-section">
+          <h3>Week-by-Week Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item"><span class="week-num">WK 44</span><div class="week-content"><strong>Time-Indexed Sorted Stores</strong><p>Configure a multi-instance scheduler polling data blocks mapped within structured time offsets for fast retrieval loops.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 45</span><div class="week-content"><strong>Atomic Lease Acquisition Loop</strong><p>Write an automated node reservation controller implementing row-level concurrency gates to lock execution streams safely.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 46</span><div class="week-content"><strong>Zombie Process Extermination</strong><p>Code an internal background heartbeat monitor to automatically release and reassign frozen blocks if connection paths drop.</p></div></div>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Go / TypeScript</span><span class="chip">Redis ZSET</span><span class="chip">PostgreSQL</span><span class="chip">CAS Locks</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 17 -->
+    <div class="project-card p17">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P17 · 6 WEEKS</div>
+        <div class="project-title-block">
+          <h2>Distributed Multi-GPU Tensor Parallelism Engine</h2>
+          <div class="tagline">Matrix sharding math · Column vs Row parallelism · NCCL collective communication kernels · All-Reduce synchronizations</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">🧬 Distributed Computing</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>A weights partition framework slicing large linear neural matrices across independent worker spaces</li>
+              <li>A manual implementation of Column Parallelism for transformer projections and Row Parallelism for downward layers</li>
+              <li>A multi-process orchestration module syncing execution nodes via explicit All-Reduce network logic arrays</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Decomposing billion-parameter networks systematically across separate physical hardware memory matrices</li>
+              <li>Evaluating synchronization latency trade-offs forced by multi-device network collective data transfers</li>
+            </ul>
+          </div>
+        </div>
+        <div class="weeks-section">
+          <h3>Week-by-Week Breakdown</h3>
+          <div class="week-list">
+            <div class="week-item"><span class="week-num">WK 47</span><div class="week-content"><strong>Column Partitioning Layouts</strong><p>Extract weights from layer matrix frames and slice coordinates vertically across multi-process execution channels blocks.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 48</span><div class="week-content"><strong>Row Parallel Integration Math</strong><p>Code down-projection matrix operations across split devices horizontally, tracking execution bounds across threads.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 49</span><div class="week-content"><strong>All-Reduce Kernel Assembly</strong><p>Assemble low-level communication routines to merge split device states seamlessly inside one concurrent loop path.</p></div></div>
+            <div class="week-item"><span class="week-num">WK 50</span><div class="week-content"><strong>Cluster Performance Validation</strong><p>Profile network bandwidth efficiency charts comparing token output velocities across multi-GPU simulation layouts.</p></div></div>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Python</span><span class="chip">PyTorch Distributed</span><span class="chip">NCCL Kernels</span><span class="chip">Matrix Sharding</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 18 -->
+    <div class="project-card p18">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P18 · 3 WEEKS</div>
+        <div class="project-title-block">
+          <h2>CI/CD Pipeline for ML Models</h2>
+          <div class="tagline">MLflow versioning · Automated drift triggers · A/B traffic routing · Prometheus + Grafana telemetry stack</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">⚙️ MLOps</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>An enterprise deployment pipeline managing code transformations and weights validation checks automatically</li>
+              <li>A dynamic routing proxy split-testing client API volumes cleanly (10% new model / 90% production baseline)</li>
+              <li>A monitoring daemon tracking layer degradation patterns via Prometheus metrics and Grafana alerts</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Managing model lifecycles safely without triggering live serving disruption phases</li>
+              <li>Automating rollback actions if validation benchmarks reveal accuracy drops in post-deployment streams</li>
+            </ul>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">MLflow</span><span class="chip">Prometheus</span><span class="chip">Grafana</span><span class="chip">GitHub Actions</span><span class="chip">Docker</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 19 -->
+    <div class="project-card p19">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P19 · 3 WEEKS</div>
+        <div class="project-title-block">
+          <h2>Feature Store & Data Versioning Architecture</h2>
+          <div class="tagline">Point-in-time correctness · Feast store splits · DVC dataset layers · Training-serving skew prevention</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">📊 Data Infrastructure</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>A high-availability feature ledger dividing offline historical data lakes from low-latency online caches</li>
+              <li>A temporal mapping layer ensuring point-in-time correctness to protect training cycles from future data leaks</li>
+              <li>A git-integrated tracking layout versioning multi-gigabyte dataset matrices via DVC handles securely</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Eliminating training-serving data skew caused by mismatched real-time computing feature definitions</li>
+              <li>Constructing rigid validation boundaries around data inputs before models execute processing lines</li>
+            </ul>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Feast</span><span class="chip">DVC</span><span class="chip">PostgreSQL</span><span class="chip">Redis</span><span class="chip">Python</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 20 -->
+    <div class="project-card p20">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P20 · 3 WEEKS</div>
+        <div class="project-title-block">
+          <h2>FSDP Distributed Training Engine</h2>
+          <div class="tagline">Fully Sharded Data Parallelism · Gradient sharding · Memory profile analysis · Gradient accumulation</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">🧬 Distributed Training</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>An advanced training optimization module sharding model weights, gradients, and optimizer states across workers</li>
+              <li>A gradient accumulation loop compiling step metrics to enable huge effective batch sizes on limited hardware</li>
+              <li>An analytical mapping harness capturing comparative memory overhead curves between DDP and FSDP modes</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Bypassing single-device VRAM saturation points during massive backward training propagation epochs</li>
+              <li>Leveraging mixed-precision matrix calculations ($BF16/FP32$) to scale parameter throughput without loss of stability</li>
+            </ul>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">PyTorch FSDP</span><span class="chip">torch.distributed</span><span class="chip">DeepSpeed</span><span class="chip">Mixed Precision</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 21 -->
+    <div class="project-card p21">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P21 · 4 WEEKS</div>
+        <div class="project-title-block">
+          <h2>Kafka Real-Time Streaming Pipeline</h2>
+          <div class="tagline">Partitioned message delivery · Sliding-window aggregation · TimescaleDB storage · Dead-letter topic queues</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">⚡ Event Streaming</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>A high-throughput distributed event broker ingest channel handling synchronized transaction pricing streams</li>
+              <li>A real-time Kafka Streams pipeline computing rolling analytical metrics and statistical anomaly Z-scores natively</li>
+              <li>A fault-tolerant dead-letter queue automatically isolating malformed incoming byte frames from core processing blocks</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Orchestrating strict ordered delivery models across highly partition-replicated event clusters</li>
+              <li>Bypassing database query bounds by executing continuous state aggregations directly within the stream memory path</li>
+            </ul>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Apache Kafka</span><span class="chip">Kafka Streams</span><span class="chip">TimescaleDB</span><span class="chip">Redis</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 22 -->
+    <div class="project-card p22">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P22 · 2 WEEKS</div>
+        <div class="project-title-block">
+          <h2>Zero-Trust API Security Layer</h2>
+          <div class="tagline">OAuth 2.0 + PKCE · Asymmetric RS256 signing middleware · Fine-grained RBAC permissions · Vault secrets rotation</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">🔒 Security</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>A centralized local authorization center handling secure identity maps using Keycloak containers</li>
+              <li>An asymmetric signature verification middleware tracking signed JWT tokens safely via public key keysets</li>
+              <li>An operational secrets manager automating credentials rotation schedules through Vault integration hooks</li>
+              <li>A distributed token-bucket rate limiter written in Redis paired with an immutable system audit trail logging facility</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Securing sensitive data boundaries against token forge vectors and prompt injection leaks</li>
+              <li>Enforcing strict, fine-grained Role-Based Access Control (RBAC) boundaries at the API parameter level</li>
+            </ul>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Keycloak</span><span class="chip">HashiCorp Vault</span><span class="chip">OAuth 2.0</span><span class="chip">JWT RS256</span><span class="chip">Redis</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 23 -->
+    <div class="project-card p23">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P23 · 4 WEEKS</div>
+        <div class="project-title-block">
+          <h2>Manufacturing Digital Twin Engine</h2>
+          <div class="tagline">OPC-UA / MQTT asset interfaces · Real-time status state machines · Local vision model hooks · TimescaleDB storage</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">🏭 Industry 4.0</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>A real-time physical simulation tracking state cycles (idle, running, faulted) via active OPC-UA loops</li>
+              <li>An integrated edge AI vision connector feeding image parameters straight into quantized INT4 target layers</li>
+              <li>An automated event handler translating equipment signal alerts directly into background maintenance tasks</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Bridging corporate MES enterprise asset schemas directly with performant asynchronous computing layers</li>
+              <li>Storing high-density metric arrays without triggering read degradation inside timeseries storage targets</li>
+            </ul>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">OPC-UA</span><span class="chip">MQTT</span><span class="chip">TimescaleDB</span><span class="chip">Edge AI</span><span class="chip">Python</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 24 -->
+    <div class="project-card p24">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P24 · 3 WEEKS</div>
+        <div class="project-title-block">
+          <h2>MLIR / Triton Custom GPU Kernel</h2>
+          <div class="tagline">Fused softmax design · On-chip SRAM memory maps · Nsight optimization profiling · FLOP utilization metrics</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">⚙️ Runtime Engineering</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>A customized GPU calculation kernel executing fused operations directly inside raw silicon cache layers</li>
+              <li>An optimized tensor execution pass eliminating intermediate memory transactions completely from HBM tracks</li>
+              <li>A hardware profiling suite using NVIDIA Nsight to inspect occupancy levels and tracking bandwidth limits</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Writing bare-metal parallel loops bypassing traditional compiler runtime abstraction overhead walls</li>
+              <li>Maximizing hardware FLOP utilization indices by matching sub-block thread execution parameters perfectly</li>
+            </ul>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Triton</span><span class="chip">MLIR Core</span><span class="chip">Nsight Profiler</span><span class="chip">CUDA Programming</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 25 -->
+    <div class="project-card p25">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P25 · 3 WEEKS</div>
+        <div class="project-title-block">
+          <h2>Operator Fusion & Graph Compiler</h2>
+          <div class="tagline">torch.fx graph capture · Pattern-matching fusion targets · Custom Triton kernel dispatch arrays</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">💾 Compiler Core</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>A python-based graph-level infrastructure parsing standard model network links dynamically via torch.fx</li>
+              <li>An automated matching module identifying adjacent elementwise operators (ReLU + Bias + LayerNorm) for compaction</li>
+              <li>A code generator architecture outputting fused, compiled executable targets straight down to Triton handlers</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Understanding intermediate representations (IR graphs) inside deep machine learning runtime layers</li>
+              <li>Optimizing execution timelines by grouping split software dispatches into single unified hardware passes</li>
+            </ul>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">torch.fx</span><span class="chip">torch.compile</span><span class="chip">Triton IR</span><span class="chip">Python Core</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 26 -->
+    <div class="project-card p26">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P26 · 2 WEEKS</div>
+        <div class="project-title-block">
+          <h2>PPO Reinforcement Learning Engine</h2>
+          <div class="tagline">Clipped surrogate objectives · Generalized Advantage Estimation (GAE) · Policy entropy analytics</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">🤖 Reinforcement Learning</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>A core policy gradient calculation model coded from scratch inside raw PyTorch matrices</li>
+              <li>A Generalized Advantage Estimation loop computing reward trajectory profiles across environments</li>
+              <li>An analytics monitoring system graphing tracking parameters: policy entropy, KL bounds, and target success lines</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>The mathematical foundations behind policy-vs-value function optimizations within reinforcement setups</li>
+              <li>Preventing destructive parameter deviations by enforcing strict clipped surrogate probability boundaries</li>
+            </ul>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">PyTorch Core</span><span class="chip">GAE Math</span><span class="chip">Gymnasium</span><span class="chip">Tensor Physics</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 27 -->
+    <div class="project-card p27">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P27 · 2 WEEKS</div>
+        <div class="project-title-block">
+          <h2>RLHF Alignment Pipeline</h2>
+          <div class="tagline">Preference pair reward models · PPO transformer tuning loops · KL divergence penalties</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">🧬 Human Alignment</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>A binary cross-entropy reward classification model trained on preference datasets</li>
+              <li>An active reinforcement fine-tuning engine using the reward network as an automated grading signal</li>
+              <li>A dynamic penalty layer computing token-level KL divergence vectors to protect models from mode-collapse</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Shifting neural parameters away from standard classification tokens toward human preference alignment targets</li>
+              <li>Quantifying performance gains by benchmarking fine-tuned outputs directly against basic SFT layers</li>
+            </ul>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">PyTorch</span><span class="chip">RLHF Core</span><span class="chip">PPO Loop</span><span class="chip">Model Alignment</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 28 -->
+    <div class="project-card p28">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P28 · 2 WEEKS</div>
+        <div class="project-title-block">
+          <h2>Hybrid Retrieval Engine (Dense + BM25)</h2>
+          <div class="tagline">pgvector cosine arrays · BM25 sparse search indexes · Reciprocal Rank Fusion (RRF) algorithms</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">🔍 Advanced Search</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>A dual-engine retrieval coordinator parsing high-dimensional coordinates along with sparse text indexes</li>
+              <li>An integrated Reciprocal Rank Fusion loop merging competing score matrices mathematically into one set</li>
+              <li>An automated benchmarking harness measuring Recall@10 curves across thousands of test profiles</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Balancing semantic concept understandings perfectly with exact technical phrase search parameters</li>
+              <li>Optimizing discovery architectures to insulate system inputs from vector retrieval blind spots</li>
+            </ul>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Elasticsearch</span><span class="chip">pgvector</span><span class="chip">RRF Math</span><span class="chip">Recall Benchmarks</span></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 29 -->
+    <div class="project-card p29">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num">P29 · 1 WEEK</div>
+        <div class="project-title-block">
+          <h2>Knowledge Graph + GraphRAG System</h2>
+          <div class="tagline">spaCy NER entity extraction · Neo4j relational maps · Multi-hop reasoning context builders</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill">🕸️ Knowledge Architecture</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>What You're Building</h4>
+            <ul>
+              <li>An entity-relation extraction daemon parsing input paragraphs into strict triple records ($Subject \text{-} Predicate \text{-} Object$)</li>
+              <li>A high-availability graph store tracking cross-document relationship networks using Neo4j and Cypher queries</li>
+              <li>A multi-hop context assembler running graph traversals to extract interconnected variables before generating tokens</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Core Concepts</h4>
+            <ul>
+              <li>Why flat chunk models collapse when resolving global, multi-document logical relationship patterns</li>
+              <li>Structuring clear knowledge topology maps to guarantee factual accuracy across large enterprise context windows</li>
+            </ul>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Neo4j</span><span class="chip">spaCy NER</span><span class="chip">Cypher Queries</span><span class="chip">GraphRAG Core</span></div>
+      </div>
+    </div>
+
+    <!-- ==================== TIER 1 ENTERPRISE CAPSTONES ==================== -->
+    <div style="margin-top: 56px; margin-bottom: 24px;">
+      <h2 style="font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: var(--accent-capstone); text-transform: uppercase; letter-spacing: 2px;">⚡ Enterprise Production Capstone Suites (1 Year Per Suite)</h2>
+      <p style="color: var(--muted); font-size: 13px; margin-top: 4px;">Consolidating your 29 infrastructural blocks into highly decoupled commercial-grade software ecosystems.</p>
+    </div>
+
+    <!-- CAPSTONE 1 -->
+    <div class="project-card cap-card" style="border-color: var(--accent-capstone);">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num cap-num">CAPSTONE 01 · 1 YEAR RUN TIME</div>
+        <div class="project-title-block">
+          <h2>The Hydra Engine: Disaggregated Multi-Tenant Inference Cluster</h2>
+          <div class="tagline">Phase isolation (Prefill vs Decode) · Distributed PagedAttention VRAM management · Continuous Batching loop controllers</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill" style="color: var(--accent-capstone);">🛡️ Hyperscale Core</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>Platform Scale & Architecture</h4>
+            <ul>
+              <li>A production-ready serving framework separating compute-bound **Prefill clusters** from memory-bound **Decode arrays**</li>
+              <li>An optimized core execution layer running high-frequency **Continuous Batching** scripts natively across nodes</li>
+              <li>Multi-tenant access control structures combining your P3 atomic mutex handlers with custom P22 Zero-Trust asymmetric signatures</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Underlying Core Integrations</h4>
+            <ul>
+              <li><strong>The Ingestion Gateway:</strong> Employs P28 Hybrid Retrieval and P29 GraphRAG loops to extract documents into context fields</li>
+              <li><strong>The Compute Muscle:</strong> Prefill clusters accelerate matrix multiplications by running custom-coded P24/P25 fused Triton execution kernels</li>
+              <li><strong>The Parallel Fleet:</strong> Scales token delivery exponentially by running weights across your P17 Multi-GPU Tensor Parallelism engine</li>
+            </ul>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Go / C++ Core</span><span class="chip">vLLM Framework</span><span class="chip">Continuous Batching</span><span class="chip">PagedAttention Pool</span><span class="chip">Fused Kernels</span></div>
+      </div>
+    </div>
+
+    <!-- CAPSTONE 2 -->
+    <div class="project-card cap-card" style="border-color: var(--accent-capstone);">
+      <div class="project-header" onclick="toggle(this)">
+        <div class="proj-num cap-num">CAPSTONE 02 · 1 YEAR RUN TIME</div>
+        <div class="project-title-block">
+          <h2>Industrial AI Operations Copilot for Manufacturing</h2>
+          <div class="tagline">Edge computer vision links · Industrial Kafka / MQTT stream buses · Timeseries anomaly filters · Fault-tolerant local execution</div>
+        </div>
+        <div class="proj-meta"><span class="meta-pill" style="color: var(--accent-capstone);">🏭 Industrial Automation</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="project-body">
+        <div class="section-grid">
+          <div class="info-box">
+            <h4>Platform Scale & Architecture</h4>
+            <ul>
+              <li>A fault-tolerant local automation platform routing factory equipment signals over replicated broker nodes</li>
+              <li>Real-time edge machine vision models evaluating manufacturing assembly output for geometric defects locally</li>
+              <li>A distributed coordination pipeline linking telemetry alerts straight to localized engineering dispatch loops instantly</li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h4>Underlying Core Integrations</h4>
+            <ul>
+              <li><strong>Telemetry Backbone:</strong> Integrates physical machine arrays directly with your P21 Kafka Streams sliding-window aggregation loop</li>
+              <li><strong>Asset State Tracking:</strong> Employs P23 Digital Twin engines to maintain live status logs and trace industrial signal variances</li>
+              <li><strong>Execution Coordination:</strong> Relies on P16 Lease-Based Task Schedulers to distribute site maintenance routes safely without collision risks</li>
+              <li><strong>Data Compaction:</strong> Runs high-density telemetry histories straight through your P15 real-time dictionary byte compressor tool</li>
+            </ul>
+          </div>
+        </div>
+        <hr class="divider"/>
+        <div class="stack-chips"><span class="chip">Python / Go Core</span><span class="chip">Kafka Streams</span><span class="chip">OPC-UA / MQTT Buses</span><span class="chip">Digital Twin Enclaves</span><span class="chip">Edge Vision</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER SUMMARY -->
+  <div class="footer-summary">
+    <h3>// Total Educational Footprint Overview</h3>
+    <div class="summary-grid">
+      <div class="sum-box">
+        <div class="sum-label">Core Systems Shipped</div>
+        <div class="sum-val">29 Operational Engines</div>
+        <div class="sum-desc">Traversing scalable transaction logic, distributed matrix sharding, bare-metal GPU kernels, and zero-trust authentication loops.</div>
+      </div>
+      <div class="sum-box">
+        <div class="sum-label">Capstone Implementations</div>
+        <div class="sum-val">2 Distributed Frameworks</div>
+        <div class="sum-desc">Fusing high-velocity data streaming channels with optimized machine learning infrastructure models into standalone platforms.</div>
+      </div>
+      <div class="sum-box">
+        <div class="sum-label">Target Capacity Level</div>
+        <div class="sum-val">Principal Platform Architect</div>
+        <div class="sum-desc">Mastering performance boundaries at both the distributed application level and low-level hardware compile layer secures an elite market standing.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function toggle(header) {
+    const body = header.nextElementSibling;
+    const isActive = body.classList.contains('active');
+    document.querySelectorAll('.project-body').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.project-header').forEach(h => h.classList.remove('open'));
+    if (!isActive) { body.classList.add('active'); header.classList.add('open'); }
+  }
+  function toggleCheck(box) {
+    box.classList.toggle('done');
+    const li = box.closest('li');
+    li.classList.toggle('done-item');
+  }
+</script>
+</body>
+</html>
