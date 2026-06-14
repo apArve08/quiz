@@ -97,16 +97,64 @@
     line-height: 1.7;
     max-width: 600px;
   }
-
-  /* TIMELINE OVERVIEW BAR - UPGRADED TO RESPONSIVE GRID FOR 29 SEGMENTS */
+/* TIMELINE OVERVIEW BAR - REFACTORED TO SPACIOUS STRATEGIC PHASES */
   .timeline-bar {
-    display: grid;
-    grid-template-columns: repeat(29, 1fr);
-    gap: 1px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
     margin-bottom: 56px;
-    border-radius: 8px;
-    overflow: hidden;
   }
+  @media(max-width: 768px) {
+    .timeline-bar { flex-direction: column; gap: 8px; }
+  }
+  .tl-phase {
+    flex: 1;
+    min-width: 180px;
+    padding: 14px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+  .tl-phase:hover {
+    border-color: rgba(124,106,247,0.3);
+    background: rgba(255,255,255,0.01);
+  }
+  .phase-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .phase-span {
+    font-size: 11px;
+    color: var(--text);
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .phase-span .badge {
+    font-size: 9px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.05);
+    color: var(--muted);
+  }
+
+  /* Phase Accent Boarders */
+  .p-core { border-top: 3px solid var(--accent1); }
+  .p-core .phase-title { color: var(--accent1); }
+  .p-math { border-top: 3px solid var(--accent5); }
+  .p-math .phase-title { color: var(--accent5); }
+  .p-ops { border-top: 3px solid var(--accent17); }
+  .p-ops .phase-title { color: var(--accent17); }
+  .p-low { border-top: 3px solid var(--accent24); }
+  .p-low .phase-title { color: var(--accent24); }
+  .p-graph { border-top: 3px solid var(--accent28); }
+  .p-graph .phase-title { color: var(--accent28); }
   @media(max-width: 1200px) {
     .timeline-bar { grid-template-columns: repeat(10, 1fr); gap: 3px; }
   }
@@ -349,40 +397,29 @@
     <h1>29 Deep Infrastructure Builds.<br/><span>Plus Tier-1 Capstone Architecture Suites.</span></h1>
     <p>An exhaustive master tracking curriculum spanning performant application design, automated model fine-tuning, telemetry pipelines, hardware compilers, and real-time automation twins.</p>
   </div>
-
-  <!-- TIMELINE BAR -->
+<!-- TIMELINE OVERVIEW BAR -->
   <div class="timeline-bar">
-    <div class="tl-seg tl-seg-1"><span class="num">1</span><div class="weeks">W1-4</div></div>
-    <div class="tl-seg tl-seg-2"><span class="num">2</span><div class="weeks">W5-8</div></div>
-    <div class="tl-seg tl-seg-3"><span class="num">3</span><div class="weeks">W9-12</div></div>
-    <div class="tl-seg tl-seg-4"><span class="num">4</span><div class="weeks">W1-12P</div></div>
-    <div class="tl-seg tl-seg-5"><span class="num">5</span><div class="weeks">W13-15</div></div>
-    <div class="tl-seg tl-seg-6"><span class="num">6</span><div class="weeks">W16-18</div></div>
-    <div class="tl-seg tl-seg-7"><span class="num">7</span><div class="weeks">W19-21</div></div>
-    <div class="tl-seg tl-seg-8"><span class="num">8</span><div class="weeks">W22-25</div></div>
-    <div class="tl-seg tl-seg-9"><span class="num">9</span><div class="weeks">W26-27</div></div>
-    <div class="tl-seg tl-seg-10"><span class="num">10</span><div class="weeks">W28-29</div></div>
-    <div class="tl-seg tl-seg-11"><span class="num">11</span><div class="weeks">W30-31</div></div>
-    <div class="tl-seg tl-seg-12"><span class="num">12</span><div class="weeks">W32-34</div></div>
-    <div class="tl-seg tl-seg-13"><span class="num">13</span><div class="weeks">W35-37</div></div>
-    <div class="tl-seg tl-seg-14"><span class="num">14</span><div class="weeks">W38-40</div></div>
-    <div class="tl-seg tl-seg-15"><span class="num">15</span><div class="weeks">W41-43</div></div>
-    <div class="tl-seg tl-seg-16"><span class="num">16</span><div class="weeks">W44-46</div></div>
-    <div class="tl-seg tl-seg-17"><span class="num">17</span><div class="weeks">W47-52</div></div>
-    <div class="tl-seg tl-seg-18"><span class="num">18</span><div class="weeks">Ops</div></div>
-    <div class="tl-seg tl-seg-19"><span class="num">19</span><div class="weeks">Feat</div></div>
-    <div class="tl-seg tl-seg-20"><span class="num">20</span><div class="weeks">FSDP</div></div>
-    <div class="tl-seg tl-seg-21"><span class="num">21</span><div class="weeks">Kafka</div></div>
-    <div class="tl-seg tl-seg-22"><span class="num">22</span><div class="weeks">Sec</div></div>
-    <div class="tl-seg tl-seg-23"><span class="num">23</span><div class="weeks">Twin</div></div>
-    <div class="tl-seg tl-seg-24"><span class="num">24</span><div class="weeks">Krn</div></div>
-    <div class="tl-seg tl-seg-25"><span class="num">25</span><div class="weeks">Fuse</div></div>
-    <div class="tl-seg tl-seg-26"><span class="num">26</span><div class="weeks">PPO</div></div>
-    <div class="tl-seg tl-seg-27"><span class="num">27</span><div class="weeks">RLHF</div></div>
-    <div class="tl-seg tl-seg-28"><span class="num">28</span><div class="weeks">Hyb</div></div>
-    <div class="tl-seg tl-seg-29"><span class="num">29</span><div class="weeks">Graph</div></div>
+    <div class="tl-phase p-core">
+      <div class="phase-title">// Phase 01</div>
+      <div class="phase-span">Backend & Concurrency <span class="badge">P1 – P5</span></div>
+    </div>
+    <div class="tl-phase p-math">
+      <div class="phase-title">// Phase 02</div>
+      <div class="phase-span">Neural Mathematics <span class="badge">P6 – P12</span></div>
+    </div>
+    <div class="tl-phase p-ops">
+      <div class="phase-title">// Phase 03</div>
+      <div class="phase-span">Hardware Systems <span class="badge">P13 – P17</span></div>
+    </div>
+    <div class="tl-phase p-low">
+      <div class="phase-title">// Phase 04</div>
+      <div class="phase-span">MLOps & Streaming <span class="badge">P18 – P23</span></div>
+    </div>
+    <div class="tl-phase p-graph">
+      <div class="phase-title">// Phase 05</div>
+      <div class="phase-span">Compilers & Alignment <span class="badge">P24 – P29</span></div>
+    </div>
   </div>
-
   <!-- PREPARATION BOX -->
   <div class="info-box p1" style="margin-bottom:40px;">
     <h4 style="color:var(--accent1)">// Workspace Prerequisites — Preparation Checklist</h4>
